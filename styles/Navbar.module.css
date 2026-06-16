@@ -1,0 +1,48 @@
+/* .navItems{
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    padding: 30px;
+    background-color: #fff;
+    color: black;
+} */
+
+.navbar {
+    margin: 24px 0;
+}
+
+.nav_wrapper {
+    padding: 0 8%;
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
+    
+}
+
+.nav_logo{
+    width: 90%;
+}
+
+.nav_ul {
+    display: flex;
+    gap: 20px;
+}
+
+.nav_list_items {
+    font-size: 15px;
+    color: #032b41;
+    cursor: not-allowed;
+}
+
+
+.login {
+    cursor: pointer;
+    transition: all 200ms ease;
+}
+.login:hover {
+    color: #66f550 ;
+}
+
+
+

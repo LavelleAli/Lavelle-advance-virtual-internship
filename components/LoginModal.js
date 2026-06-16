@@ -1,0 +1,95 @@
+'use client'
+import {useState} from "react";
+import Image from "next/image";
+import "../styles/LoginModal.css";
+import { FaUser } from "react-icons/fa6";
+import { TfiClose } from "react-icons/tfi";
+import { useDispatch } from "react-redux";
+import { closeModal } from "@/redux/slices/loginModal";
+import SignUpModal from "./SignUpModal";
+import { auth, login, googleSignUp } from "@/firebase/firebase";
+import {signInWithEmailAndPassword, signInWithPopup, signInAnonymously } from "firebase/auth";
+
+
+
+const LoginModal = () => {
+  const dispatch = useDispatch();
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
+
+
+
+  if (showSignUp){
+    return <SignUpModal/>
+  }
+
+  
+  return (
+    <>
+    <div className="outer_modal">
+      <div className="login_wrapper">
+        <div className="login_auth">
+
+          <button className="close_Lgn" onClick={() => dispatch(closeModal())}>
+          <TfiClose className="close_Icn" />
+          </button>
+
+          <h2 className="login_title">Log in to Summarist</h2>
+
+          <figure className="loginBtn guest_login">
+            <div className="img__wrapper">
+            <FaUser className="guest_icon" />
+            </div>
+            <button className="loginTxt" onClick={() => signInAnonymously(auth)}>Login as Guest</button>
+          </figure>
+
+          <div className="authSep__wrapper">
+          <div className="authSeperator"></div>
+          <p>or</p>
+          <div className="authSeperator"></div>
+          </div>
+
+          <figure className="loginBtn google_login">
+            <div className="gglBtn">
+            <Image className="btnImg" src={"/google.png"} width={15} height={15} alt="google" />
+            </div>
+            <button className="loginTxt" onClick={googleSignUp}>Login with Google</button>
+          </figure>
+
+          <div className="authSep__wrapper">
+            <div className="authSeperator"></div>
+            <p>or</p>
+            <div className="authSeperator"></div>
+          </div>
+
+          <input 
+            className="userInfo_input" 
+            type="email" 
+            placeholder="Email Address" 
+            onChange={(e) => setEmail(e.target.value)} 
+          />
+
+          <input 
+            className="userInfo_input" 
+            type="password" 
+            placeholder="Password" 
+            onChange={(e) => setPassword(e.target.value)}
+            required 
+          />
+
+          <button className="LoginBtn" onClick={() => login(email, password)}>Login</button>
+        </div>
+
+        <div className="restor_acct-wrapper">
+        <div className="pwReset">Forgot your password?</div>
+
+        <button className="signupBtn" onClick={() => setShowSignUp(true)}>Don&apos;t have an account?</button>
+        </div>
+      </div>
+    </div>
+    </>
+  );
+};
+
+export default LoginModal;
