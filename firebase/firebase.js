@@ -9,7 +9,8 @@ import {
   signInAnonymously, 
   signOut,
   GoogleAuthProvider, 
-  EmailAuthProvider
+  EmailAuthProvider,
+  onAuthStateChanged
 } from "firebase/auth";
 import { toast } from "react-toastify";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -35,6 +36,7 @@ const login = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)
     toast.success("Login Successful")
+    return true
   }
   catch (error) {
     console.log("Login Unsuccessful", error)
@@ -42,16 +44,30 @@ const login = async (email, password) => {
   }
 };
 
-const googleSignUp = async () => {
+const googleSignIn = async () => {
   try {
     await signInWithPopup(auth, googleProvider )
     toast.success("Signed in with Google")
+    return true
   }
   catch(error) {
     console.log("Sign Up Unsuccessful", error)
     toast.error(error.code.split('/')[1].split('-').join( ))
   }
 };
+
+const loginGuest = async () => {
+  try {
+    await signInAnonymously(auth)
+    toast.success("Successful Login")
+    return true
+  }
+  catch(error) {
+    console.log("Login Unsuccessful", error)
+    toast.error(error.code.split('/')[1].split('-').join(' '))
+  }
+};
+
 
 const emailSignUp = async (name, email, password) => {
   try {
@@ -63,6 +79,8 @@ const emailSignUp = async (name, email, password) => {
       EmailAuthProvider:"local",
       email,
     });
+    toast.success("Success! Thank You for Signing Up with Summarist")
+    return true
   }
   catch(error) {
     console.log("Sign Up Unsuccessful", error)
@@ -70,12 +88,27 @@ const emailSignUp = async (name, email, password) => {
   }
 };
 
-const handleGuest = async () => {
-    await signInAnonymously(auth)
+const googleSignUp = async () => {
+  try {
+    const res = await signInWithPopup(auth, googleProvider);
+    const user = res.user;
+    await addDoc(collection(db, "user"), {
+      uid: user.uid,
+      name: user.displayName,
+      authProvider: "google",
+      email: user.email,
+    });
+    toast.success("Success! Thank You for Siging Up With Summarist!")
+    return true
   }
+  catch (error) {
+    console.log("Unsuccessful Sign Up, Please Try Again", error);
+    toast.error(error.code.split('/')[1].split('-').join(' '))
+  }
+};
 
 const logout = () => {
   signOut(auth);
 };
 
-export { db, auth, googleProvider,login, googleSignUp, emailSignUp, logout, handleGuest };
+export { db, auth, googleProvider,login, googleSignIn, emailSignUp, logout, loginGuest, googleSignUp };

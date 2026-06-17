@@ -1,5 +1,5 @@
 'use client'
-import {useState} from "react";
+import { useState } from "react";
 import Image from "next/image";
 import "../styles/LoginModal.css";
 import { FaUser } from "react-icons/fa6";
@@ -7,8 +7,7 @@ import { TfiClose } from "react-icons/tfi";
 import { useDispatch } from "react-redux";
 import { closeModal } from "@/redux/slices/loginModal";
 import SignUpModal from "./SignUpModal";
-import { auth, login, googleSignUp } from "@/firebase/firebase";
-import {signInWithEmailAndPassword, signInWithPopup, signInAnonymously } from "firebase/auth";
+import { login, googleSignIn, loginGuest } from "@/firebase/firebase";
 
 
 
@@ -18,7 +17,20 @@ const LoginModal = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
 
+  const handleLogin = async () => {
+    const ok = await login(email, password)
+    if (ok) dispatch(closeModal())
+  }
 
+  const handleGuestLogin = async () => {
+    const ok = await loginGuest()
+    if (ok) dispatch(closeModal())
+  }
+
+  const handleGoogleLogin = async () => {
+    const ok = await googleSignIn()
+    if (ok) dispatch(closeModal())
+  }
 
   if (showSignUp){
     return <SignUpModal/>
@@ -41,7 +53,7 @@ const LoginModal = () => {
             <div className="img__wrapper">
             <FaUser className="guest_icon" />
             </div>
-            <button className="loginTxt" onClick={() => signInAnonymously(auth)}>Login as Guest</button>
+            <button className="loginTxt" onClick={handleGuestLogin}>Login as Guest</button>
           </figure>
 
           <div className="authSep__wrapper">
@@ -54,7 +66,7 @@ const LoginModal = () => {
             <div className="gglBtn">
             <Image className="btnImg" src={"/google.png"} width={15} height={15} alt="google" />
             </div>
-            <button className="loginTxt" onClick={googleSignUp}>Login with Google</button>
+            <button className="loginTxt" onClick={handleGoogleLogin}>Login with Google</button>
           </figure>
 
           <div className="authSep__wrapper">
@@ -78,7 +90,7 @@ const LoginModal = () => {
             required 
           />
 
-          <button className="LoginBtn" onClick={() => login(email, password)}>Login</button>
+          <button className="LoginBtn" onClick={handleLogin}>Login</button>
         </div>
 
         <div className="restor_acct-wrapper">

@@ -1,39 +1,38 @@
-import Image from "next/image";
-import "../styles/SignUp.css";
-import LoginModal from "./LoginModal";
-import { TfiClose } from "react-icons/tfi";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { closeModal } from "@/redux/slices/loginModal";
-import { googleSignUp, emailSignUp } from "@/firebase/firebase";
+import React from 'react'
 
-
-const SignUpModal = () => {
-
-    const dispatch = useDispatch();
-    const [showLogin, setShowLogin] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-
-    const handleGoogleSignUp = async () => {
-      const ok = await googleSignUp()
-      if (ok) dispatch(closeModal())
-    }
-
-    const handleEmailSignUp = async () => {
-      const ok = await emailSignUp('', email, password)
-      if (ok) dispatch(closeModal())
-    }
-    
-
-    if (showLogin) {
-        return <LoginModal />
-    }
-
-
+function ResetPasswordModal() {
   return (
     <>
+      
+            <div className="outer_modal">
+              <div className="signUp_wrapper">
+                <div className="login_auth">
+                  <button
+                    className="close_Lgn"
+                    onClick={() => dispatch(closeModal())}
+                  >
+                    <TfiClose className="close_Icn" />
+                  </button>
+      
+                  <h2 className="login_title">Reset your password</h2>
+      
+                  <input
+                    className="userInfo_input"
+                    type="email"
+                    placeholder="Email Address"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  
+                  <button className="resetPwBtn" onClick={handleEmailSignUp}>Send reset password link</button>
+                </div>
+      
+                <div className="restor_acct-wrapper">
+                  <button className="signupBtn" onClick={() => setShowLogin(true)}>Go to login</button>
+                </div>
+              </div>
+            </div>
+    </>
+  )
       <div className="outer_modal">
         <div className="signUp_wrapper">
           <div className="login_auth">
@@ -86,8 +85,6 @@ const SignUpModal = () => {
           </div>
         </div>
       </div>
-    </>
-  );
-};
+}
 
-export default SignUpModal;
+export default ResetPasswordModal
