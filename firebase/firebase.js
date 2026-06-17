@@ -9,8 +9,7 @@ import {
   signInAnonymously, 
   signOut,
   GoogleAuthProvider, 
-  EmailAuthProvider,
-  onAuthStateChanged
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { toast } from "react-toastify";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -107,8 +106,18 @@ const googleSignUp = async () => {
   }
 };
 
+const resetPassword = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email)
+    toast.success("Password reset email sent")
+    return true
+  } catch (error) {
+    toast.error(error.code.split('/')[1].split('-').join(' '))
+  }
+}
+
 const logout = () => {
   signOut(auth);
 };
 
-export { db, auth, googleProvider,login, googleSignIn, emailSignUp, logout, loginGuest, googleSignUp };
+export { db, auth, googleProvider, login, googleSignIn, emailSignUp, logout, loginGuest, googleSignUp, resetPassword };

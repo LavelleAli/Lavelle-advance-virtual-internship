@@ -6,7 +6,7 @@ import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { BiCrown } from "react-icons/bi";
 import { RiLeafLine } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
-import { closeModal } from "@/redux/slices/loginModal";
+import { openModal, closeModal } from "@/redux/slices/loginModal";
 import LoginModal from '../components/LoginModal'
 import Image from "next/image";
 
@@ -14,8 +14,9 @@ import Image from "next/image";
 
 export default function Home() {
 
-  const isOpen = useSelector((state) => state.modal.isOpen)
-  const dispatch = useDispatch()
+  const isOpen = useSelector((state) => state.modal.isOpen);
+  const dispatch = useDispatch();
+
 
 
   return (
@@ -38,7 +39,7 @@ export default function Home() {
                   <br className="remove--tablet" />
                   and even people who don&apos;t like to read.
                 </div>
-                <button className="btn home__cta--btn">Login</button>
+                <button className="btn home__cta--btn" onClick={() => dispatch(openModal())}>Login</button>
               </div>
               <figure className="landing__image--mask">
                 <Image src="/landing.png" alt="landing" width={200} height={200} />
@@ -207,7 +208,8 @@ export default function Home() {
               </div>
             </div>
             <div className="reviews__btn--wrapper">
-              <button className="btn home__cta--btn">Login</button>
+              <button className="btn home__cta--btn" onClick={() => dispatch(openModal())}>Login
+              </button>
             </div>
           </div>
         </div>

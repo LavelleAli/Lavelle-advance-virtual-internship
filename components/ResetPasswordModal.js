@@ -1,40 +1,32 @@
-import React from 'react'
+import { useState } from "react";
+import { resetPassword } from "@/firebase/firebase";
+import { useDispatch } from "react-redux";
+import { closeModal } from "@/redux/slices/loginModal";
+import { TfiClose } from "react-icons/tfi";
+import LoginModal from "./LoginModal";
+import "../styles/ResetPassword.css";
 
 function ResetPasswordModal() {
+
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [showLogin, setShowLogin] = useState(false);
+
+  const resetPw = async () => {
+   const ok = await resetPassword(email)
+   if (ok) {
+    setShowLogin(true)
+   }
+  };
+
+  if (showLogin) {
+    return <LoginModal />;
+  }
+
   return (
     <>
-      
-            <div className="outer_modal">
-              <div className="signUp_wrapper">
-                <div className="login_auth">
-                  <button
-                    className="close_Lgn"
-                    onClick={() => dispatch(closeModal())}
-                  >
-                    <TfiClose className="close_Icn" />
-                  </button>
-      
-                  <h2 className="login_title">Reset your password</h2>
-      
-                  <input
-                    className="userInfo_input"
-                    type="email"
-                    placeholder="Email Address"
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  
-                  <button className="resetPwBtn" onClick={handleEmailSignUp}>Send reset password link</button>
-                </div>
-      
-                <div className="restor_acct-wrapper">
-                  <button className="signupBtn" onClick={() => setShowLogin(true)}>Go to login</button>
-                </div>
-              </div>
-            </div>
-    </>
-  )
       <div className="outer_modal">
-        <div className="signUp_wrapper">
+        <div className="resetPw_wrapper">
           <div className="login_auth">
             <button
               className="close_Lgn"
@@ -43,26 +35,7 @@ function ResetPasswordModal() {
               <TfiClose className="close_Icn" />
             </button>
 
-            <h2 className="login_title">Sign up to Summarist</h2>
-
-            <figure className="loginBtn google_login">
-              <div className="gglBtn">
-                <Image
-                  className="btnImg"
-                  src={"/google.png"}
-                  width={15}
-                  height={15}
-                  alt="google"
-                />
-              </div>
-              <button className="loginTxt" onClick={handleGoogleSignUp}>Sign Up with Google</button>
-            </figure>
-
-            <div className="authSep__wrapper">
-              <div className="authSeperator"></div>
-              <p>or</p>
-              <div className="authSeperator"></div>
-            </div>
+            <h2 className="login_title">Reset your password</h2>
 
             <input
               className="userInfo_input"
@@ -70,21 +43,21 @@ function ResetPasswordModal() {
               placeholder="Email Address"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <input
-              className="userInfo_input"
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
 
-            <button className="LoginBtn" onClick={handleEmailSignUp}>Sign Up</button>
+            <button className="resetPwBtn" onClick={resetPw}>
+              Send reset password link
+            </button>
           </div>
 
-          <div className="restor_acct-wrapper">
-            <button className="signupBtn" onClick={() => setShowLogin(true)}>Already have an account?</button>
+          <div className="restore_acct-wrapper">
+            <button className="signupBtn" onClick={() => setShowLogin(true)}>
+              Go to login
+            </button>
           </div>
         </div>
       </div>
+    </>
+  );
 }
 
-export default ResetPasswordModal
+export default ResetPasswordModal;

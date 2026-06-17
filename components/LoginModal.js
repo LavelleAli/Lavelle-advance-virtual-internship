@@ -7,6 +7,7 @@ import { TfiClose } from "react-icons/tfi";
 import { useDispatch } from "react-redux";
 import { closeModal } from "@/redux/slices/loginModal";
 import SignUpModal from "./SignUpModal";
+import ResetPasswordModal from "./ResetPasswordModal";
 import { login, googleSignIn, loginGuest } from "@/firebase/firebase";
 
 
@@ -15,7 +16,8 @@ const LoginModal = () => {
   const dispatch = useDispatch();
   const [showSignUp, setShowSignUp] = useState(false);
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('');
+  const [resetPassword, setResetPassword] = useState(false)
 
   const handleLogin = async () => {
     const ok = await login(email, password)
@@ -36,7 +38,10 @@ const LoginModal = () => {
     return <SignUpModal/>
   }
 
-  
+  if (resetPassword) {
+    return <ResetPasswordModal />
+  }
+
   return (
     <>
     <div className="outer_modal">
@@ -75,26 +80,26 @@ const LoginModal = () => {
             <div className="authSeperator"></div>
           </div>
 
-          <input 
-            className="userInfo_input" 
-            type="email" 
-            placeholder="Email Address" 
-            onChange={(e) => setEmail(e.target.value)} 
+          <input
+            className="userInfo_input"
+            type="email"
+            placeholder="Email Address"
+            onChange={(e) => setEmail(e.target.value)}
           />
 
-          <input 
-            className="userInfo_input" 
-            type="password" 
-            placeholder="Password" 
+          <input
+            className="userInfo_input"
+            type="password"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            required 
+            required
           />
 
           <button className="LoginBtn" onClick={handleLogin}>Login</button>
         </div>
 
-        <div className="restor_acct-wrapper">
-        <div className="pwReset">Forgot your password?</div>
+        <div className="restore_acct-wrapper">
+        <button className="pwReset" onClick={() => setResetPassword(true)}>Forgot your password?</button>
 
         <button className="signupBtn" onClick={() => setShowSignUp(true)}>Don&apos;t have an account?</button>
         </div>
