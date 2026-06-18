@@ -1,14 +1,8 @@
-/* .navItems{
-    display: flex;
-    justify-content: right;
-    gap: 10px;
-    padding: 30px;
-    background-color: #fff;
-    color: black;
-} */
+
 
 .navbar {
-    margin: 24px 0;
+    margin: 32px 0;
+    margin-right: 10px;
 }
 
 .nav_wrapper {
@@ -29,7 +23,7 @@
     gap: 20px;
 }
 
-.nav_list_items {
+.nav_list {
     font-size: 15px;
     color: #032b41;
     cursor: not-allowed;

@@ -4,8 +4,8 @@ import { AiFillFileText, AiFillBulb, AiFillAudio } from "react-icons/ai";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { BiCrown } from "react-icons/bi";
 import { RiLeafLine } from "react-icons/ri";
-import LoginTrigger from "@/components/LoginTrigger";
-import LoginModalGate from "@/components/LoginModalGate";
+import LoginTrigger from "@/components/loginmodal/LoginTrigger";
+import LoginModalGate from "@/components/loginmodal/LoginModalGate";
 import Image from "next/image";
 
 export default function Home() {
@@ -13,6 +13,7 @@ export default function Home() {
     <>
       <Navbar />
       <LoginModalGate />
+      
       <section id="landing">
         <div className="container">
           <div className="row">

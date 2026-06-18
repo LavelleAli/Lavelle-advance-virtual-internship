@@ -1,5 +1,5 @@
 import Image from "next/image";
-import "../styles/SignUp.css";
+import "@/styles/SignUp.css";
 import LoginModal from "./LoginModal";
 import { TfiClose } from "react-icons/tfi";
 import { useState } from "react";

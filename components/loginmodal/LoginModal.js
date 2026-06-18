@@ -1,14 +1,14 @@
 'use client'
 import { useState } from "react";
 import Image from "next/image";
-import "../styles/LoginModal.css";
+import "@/styles/LoginModal.css";
 import { FaUser } from "react-icons/fa6";
 import { TfiClose } from "react-icons/tfi";
 import { useDispatch } from "react-redux";
 import { closeModal } from "@/redux/slices/loginModal";
 import SignUpModal from "./SignUpModal";
 import ResetPasswordModal from "./ResetPasswordModal";
-import { login, googleSignIn, loginGuest } from "@/firebase/firebase";
+import { login, googleSignIn, loginGuest,logout } from "@/firebase/firebase";
 
 
 
@@ -33,6 +33,7 @@ const LoginModal = () => {
     const ok = await googleSignIn()
     if (ok) dispatch(closeModal())
   }
+
 
   if (showSignUp){
     return <SignUpModal/>

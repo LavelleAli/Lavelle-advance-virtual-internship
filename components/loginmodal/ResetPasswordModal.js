@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { closeModal } from "@/redux/slices/loginModal";
 import { TfiClose } from "react-icons/tfi";
 import LoginModal from "./LoginModal";
-import "../styles/ResetPassword.css";
+import "@/styles/ResetPassword.css";
 
 function ResetPasswordModal() {
 
