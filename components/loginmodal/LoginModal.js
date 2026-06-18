@@ -5,6 +5,7 @@ import "@/styles/LoginModal.css";
 import { FaUser } from "react-icons/fa6";
 import { TfiClose } from "react-icons/tfi";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 import { closeModal } from "@/redux/slices/loginModal";
 import SignUpModal from "./SignUpModal";
 import ResetPasswordModal from "./ResetPasswordModal";
@@ -14,24 +15,30 @@ import { login, googleSignIn, loginGuest,logout } from "@/firebase/firebase";
 
 const LoginModal = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [showSignUp, setShowSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [resetPassword, setResetPassword] = useState(false)
 
+  const onLoginSuccess = () => {
+    dispatch(closeModal())
+    router.push('/for-you')
+  }
+
   const handleLogin = async () => {
     const ok = await login(email, password)
-    if (ok) dispatch(closeModal())
+    if (ok) onLoginSuccess()
   }
 
   const handleGuestLogin = async () => {
     const ok = await loginGuest()
-    if (ok) dispatch(closeModal())
+    if (ok) onLoginSuccess()
   }
 
   const handleGoogleLogin = async () => {
     const ok = await googleSignIn()
-    if (ok) dispatch(closeModal())
+    if (ok) onLoginSuccess()
   }
 
 
