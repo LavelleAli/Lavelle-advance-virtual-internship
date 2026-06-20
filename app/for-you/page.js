@@ -121,62 +121,298 @@ function ForYou() {
               </div>
               <div className={styles.selected__book__line}></div>
               <div className={styles.selected__book__content}>
-                <figure className="book_image__wrapper">
-                  <Image />
+                <figure className={styles.book_image__wrapper}>
+                  <Image className={styles.book_image} />
                 </figure>
                 <div className={styles.selected_book__text}>
-                  <div className={styles.selected_book__title}>The Lean Startup</div>
+                  <div className={styles.selected_book__title}>
+                    The Lean Startup
+                  </div>
                   <div className={styles.selected_book__author}>Eric Ries</div>
                   <div className={styles.selected_book__durationWrapper}>
-                    <div className="selected_book__icon">
+                    <div className={styles.selected_book__icon}>
                       <FaPlayCircle />
                     </div>
-                    <div className="selected_book__duration"> 3 mins 23 secs</div>
-                  </div>  
+                    <div className={styles.selected_book__duration}>
+                      {" "}
+                      3 mins 23 secs
+                    </div>
+                  </div>
                 </div>
-              </div> 
+              </div>
             </a>
             <div>
-              <div className={styles.for_you__title} Recommended For You></div>
-              <div className={styles.for_you__subTitle}> We think you'll like these</div>
+              <div className={styles.for_you__title}> Recommended For You</div>
+              <div className={styles.for_you__subTitle}>
+                {" "}
+                We think you'll like these
+              </div>
               <div className={styles.for_you__recommendedBooks}>
-                <a href="" className="for_you__recommendedBooks_link">
+                <a href="" className={styles.for_you__recommendedBooks_link}>
                   <audio src=""></audio>
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
+                  </figure>
+                  <div className={styles.recommended_book__title}>
+                    book title
+                  </div>
+                  <div className={styles.recommended_book__author}>
+                    book author
+                  </div>
+                  <div className={styles.recommended_book__subTitle}>
+                    book subtitle
+                  </div>
+                  <div className={styles.recommended_book__detailsWrapper}>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
+                    </div>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.4
+                      </div>
+                    </div>
+                  </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
+                <a href="" className={styles.for_you__recommendedBooks_link}>
                   <audio src=""></audio>
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
+                  </figure>
+                  <div className={styles.recommended_book__title}>
+                    book title
+                  </div>
+                  <div className={styles.recommended_book__author}>
+                    book author
+                  </div>
+                  <div className={styles.recommended_book__subTitle}>
+                    book subtitle
+                  </div>
+                  <div className={styles.recommended_book__detailsWrapper}>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
+                    </div>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.4
+                      </div>
+                    </div>
+                  </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
+                <a href="" className={styles.for_you__recommendedBooks_link}>
                   <audio src=""></audio>
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
+                  </figure>
+                  <div className={styles.recommended_book__title}>
+                    book title
+                  </div>
+                  <div className={styles.recommended_book__author}>
+                    book author
+                  </div>
+                  <div className={styles.recommended_book__subTitle}>
+                    book subtitle
+                  </div>
+                  <div className={styles.recommended_book__detailsWrapper}>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
+                    </div>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.4
+                      </div>
+                    </div>
+                  </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
+                <a href="" className={styles.for_you__recommendedBooks_link}>
                   <audio src=""></audio>
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
+                  </figure>
+                  <div className={styles.recommended_book__title}>
+                    book title
+                  </div>
+                  <div className={styles.recommended_book__author}>
+                    book author
+                  </div>
+                  <div className={styles.recommended_book__subTitle}>
+                    book subtitle
+                  </div>
+                  <div className={styles.recommended_book__detailsWrapper}>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
+                    </div>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.4
+                      </div>
+                    </div>
+                  </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
+                <a href="" className={styles.for_you__recommendedBooks_link}>
                   <audio src=""></audio>
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
+                  </figure>
+                  <div className={styles.recommended_book__title}>
+                    book title
+                  </div>
+                  <div className={styles.recommended_book__author}>
+                    book author
+                  </div>
+                  <div className={styles.recommended_book__subTitle}>
+                    book subtitle
+                  </div>
+                  <div className={styles.recommended_book__detailsWrapper}>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
+                    </div>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.4
+                      </div>
+                    </div>
+                  </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
+                <a href="" className={styles.for_you__recommendedBooks_link}>
                   <audio src=""></audio>
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
+                  </figure>
+                  <div className={styles.recommended_book__title}>
+                    book title
+                  </div>
+                  <div className={styles.recommended_book__author}>
+                    book author
+                  </div>
+                  <div className={styles.recommended_book__subTitle}>
+                    book subtitle
+                  </div>
+                  <div className={styles.recommended_book__detailsWrapper}>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
+                    </div>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.4
+                      </div>
+                    </div>
+                  </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
+                <a href="" className={styles.for_you__recommendedBooks_link}>
                   <audio src=""></audio>
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
+                  </figure>
+                  <div className={styles.recommended_book__title}>
+                    book title
+                  </div>
+                  <div className={styles.recommended_book__author}>
+                    book author
+                  </div>
+                  <div className={styles.recommended_book__subTitle}>
+                    book subtitle
+                  </div>
+                  <div className={styles.recommended_book__detailsWrapper}>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
+                    </div>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <Image className={styles.book_image} />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.4
+                      </div>
+                    </div>
+                  </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
+                <a href="" className={styles.for_you__recommendedBooks_link}>
                   <audio src=""></audio>
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
+                  </figure>
+                  <div className={styles.recommended_book__title}>
+                    book title
+                  </div>
+                  <div className={styles.recommended_book__author}>
+                    book author
+                  </div>
+                  <div className={styles.recommended_book__subTitle}>
+                    book subtitle
+                  </div>
+                  <div
+                    className={styles.recommended_book__detailsWrapper}
+                  ></div>
                 </a>
               </div>
             </div>
             <div>
               <div className={styles.for_you__title}>Suggested Books</div>
+              <div className={styles.recommended_book__detailsText}></div>{" "}
               <div className={styles.for_you__subTitle}>Browse those books</div>
               <div className={styles.for_you__recommendedBooks}>
-
-
-                <a href="" className="for_you__recommendedBooks_link">
-                  <div className="book_pill book_pill__subscriptionRequired">Premium</div>
+                <a href="" className={styles.for_you__recommendedBooks_link}>
+                  <div
+                    className={`${styles.book_pill} ${styles.book_pill__subscriptionRequired}`}
+                  >
+                    Premium
+                  </div>
                   {/* <audio src=""></audio> */}
-                  <figure className="book_image__wrapper">
-                    <Image />
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} alt="" />
                   </figure>
                   <div className={styles.recommended_book__title}></div>
                   <div className={styles.recommended_book__author}></div>
@@ -184,23 +420,31 @@ function ForYou() {
                   <div className={styles.recommended_book__detailsWrapper}>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>03:24</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
                     </div>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>4.3</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.3
+                      </div>
                     </div>
                   </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
-                  <div className="book_pill book_pill__subscriptionRequired">Premium</div>
+                <a href="" className={styles.for_you__recommendedBooks_link}>
+                  <div
+                    className={`${styles.book_pill} ${styles.book_pill__subscriptionRequired}`}
+                  >
+                    Premium
+                  </div>
                   {/* <audio src=""></audio> */}
-                  <figure className="book_image__wrapper">
-                    <Image />
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
                   </figure>
                   <div className={styles.recommended_book__title}></div>
                   <div className={styles.recommended_book__author}></div>
@@ -208,23 +452,31 @@ function ForYou() {
                   <div className={styles.recommended_book__detailsWrapper}>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>03:24</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
                     </div>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>4.3</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.3
+                      </div>
                     </div>
                   </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
-                  <div className="book_pill book_pill__subscriptionRequired">Premium</div>
+                <a href="" className={styles.for_you__recommendedBooks_link}>
+                  <div
+                    className={`${styles.book_pill} ${styles.book_pill__subscriptionRequired}`}
+                  >
+                    Premium
+                  </div>
                   {/* <audio src=""></audio> */}
-                  <figure className="book_image__wrapper">
-                    <Image />
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
                   </figure>
                   <div className={styles.recommended_book__title}></div>
                   <div className={styles.recommended_book__author}></div>
@@ -232,23 +484,31 @@ function ForYou() {
                   <div className={styles.recommended_book__detailsWrapper}>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>03:24</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
                     </div>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>4.3</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.3
+                      </div>
                     </div>
                   </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
-                  <div className="book_pill book_pill__subscriptionRequired">Premium</div>
+                <a href="" className={styles.for_you__recommendedBooks_link}>
+                  <div
+                    className={`${styles.book_pill} ${styles.book_pill__subscriptionRequired}`}
+                  >
+                    Premium
+                  </div>
                   {/* <audio src=""></audio> */}
-                  <figure className="book_image__wrapper">
-                    <Image />
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
                   </figure>
                   <div className={styles.recommended_book__title}></div>
                   <div className={styles.recommended_book__author}></div>
@@ -256,23 +516,31 @@ function ForYou() {
                   <div className={styles.recommended_book__detailsWrapper}>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>03:24</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
                     </div>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>4.3</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.3
+                      </div>
                     </div>
                   </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
-                  <div className="book_pill book_pill__subscriptionRequired">Premium</div>
+                <a href="" className={styles.for_you__recommendedBooks_link}>
+                  <div
+                    className={`${styles.book_pill} ${styles.book_pill__subscriptionRequired}`}
+                  >
+                    Premium
+                  </div>
                   {/* <audio src=""></audio> */}
-                  <figure className="book_image__wrapper">
-                    <Image />
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
                   </figure>
                   <div className={styles.recommended_book__title}></div>
                   <div className={styles.recommended_book__author}></div>
@@ -280,23 +548,31 @@ function ForYou() {
                   <div className={styles.recommended_book__detailsWrapper}>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>03:24</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
                     </div>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>4.3</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.3
+                      </div>
                     </div>
                   </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
-                  <div className="book_pill book_pill__subscriptionRequired">Premium</div>
+                <a href="" className={styles.for_you__recommendedBooks_link}>
+                  <div
+                    className={`${styles.book_pill} ${styles.book_pill__subscriptionRequired}`}
+                  >
+                    Premium
+                  </div>
                   {/* <audio src=""></audio> */}
-                  <figure className="book_image__wrapper">
-                    <Image />
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
                   </figure>
                   <div className={styles.recommended_book__title}></div>
                   <div className={styles.recommended_book__author}></div>
@@ -304,23 +580,31 @@ function ForYou() {
                   <div className={styles.recommended_book__detailsWrapper}>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>03:24</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
                     </div>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>4.3</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.3
+                      </div>
                     </div>
                   </div>
                 </a>
-                <a href="" className="for_you__recommendedBooks_link">
-                  <div className="book_pill book_pill__subscriptionRequired">Premium</div>
+                <a href="" className={styles.for_you__recommendedBooks_link}>
+                  <div
+                    className={`${styles.book_pill} ${styles.book_pill__subscriptionRequired}`}
+                  >
+                    Premium
+                  </div>
                   {/* <audio src=""></audio> */}
-                  <figure className="book_image__wrapper">
-                    <Image />
+                  <figure className={styles.book_image__wrapper}>
+                    <Image className={styles.book_image} />
                   </figure>
                   <div className={styles.recommended_book__title}></div>
                   <div className={styles.recommended_book__author}></div>
@@ -328,21 +612,22 @@ function ForYou() {
                   <div className={styles.recommended_book__detailsWrapper}>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>03:24</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
                     </div>
                     <div className={styles.recommended_book__details}>
                       <div className={styles.recommended_book__detailsIcon}>
-                        <Image />
+                        <Image className={styles.book_image} />
                       </div>
-                      <div className={styles.recommended_book__detailsText}>4.3</div>
+                      <div className={styles.recommended_book__detailsText}>
+                        4.3
+                      </div>
                     </div>
                   </div>
                 </a>
-
-
-
               </div>
             </div>
           </div>
