@@ -3,6 +3,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import styles from "@/styles/ForYou.module.css";
 import Image from "next/image";
 import axios from "axios";
+import { CiClock2 } from "react-icons/ci";
+import { IoIosStarOutline } from "react-icons/io";
 
 const SuggestedBooks = () => {
   const [suggestedBooks, setSuggestedBooks] = useState([]);
@@ -41,8 +43,8 @@ const SuggestedBooks = () => {
             src={item?.imageLink}
             className={styles.book_image}
             alt="img"
-            width={100}
-            height={100}
+            width={300}
+            height={300}
           />
         </figure>
         <div className={styles.recommended_book__title}>{item?.title}</div>
@@ -53,27 +55,17 @@ const SuggestedBooks = () => {
         <div className={styles.recommended_book__detailsWrapper}>
           <div className={styles.recommended_book__details}>
             <div className={styles.recommended_book__detailsIcon}>
-              <Image
-                src={item?.imageLink}
-                className={styles.book_image}
-                alt="img"
-                width={100}
-                height={100}
-              />
+              <CiClock2 />
             </div>
             <div className={styles.recommended_book__detailsText}>03:24</div>
           </div>
           <div className={styles.recommended_book__details}>
             <div className={styles.recommended_book__detailsIcon}>
-              <Image
-                src={item?.imageLink}
-                className={styles.book_image}
-                alt="img"
-                width={100}
-                height={100}
-              />
+              <IoIosStarOutline />
             </div>
-            <div className={styles.recommended_book__detailsText}>4.3</div>
+            <div className={styles.recommended_book__detailsText}>
+              {Math.max(item?.averageRating)}
+            </div>
           </div>
         </div>
       </a>
