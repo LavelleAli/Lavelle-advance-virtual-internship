@@ -1,29 +1,8 @@
-"use client";
-import { useState, useEffect, useCallback } from "react";
 import styles from "@/styles/ForYou.module.css";
 import Image from "next/image";
 import { FaPlayCircle } from "react-icons/fa";
 
-import axios from "axios";
-
-const SelectedBooks = () => {
-  const [books, setBooks] = useState(null);
-
-  const getData = useCallback(async () => {
-    try {
-      const { data } = await axios.get(
-        "https://us-central1-summaristt.cloudfunctions.net/getBooks?status=selected",
-      );
-      setBooks(data[0]);
-    } catch (error) {
-      console.log("Error fetching book data", error);
-    }
-  });
-
-  useEffect(() => {
-    getData();
-  }, [getData]);
-
+const SelectedBooks = ({ book }) => {
   function renderHelper(booksInfo) {
     return (
       <>
@@ -67,7 +46,7 @@ const SelectedBooks = () => {
     );
   }
 
-  return <>{books && renderHelper(books)}</>;
+  return <>{book && renderHelper(book)}</>;
 };
 
 export default SelectedBooks;

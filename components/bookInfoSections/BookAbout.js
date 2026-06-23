@@ -1,29 +1,6 @@
-"use client";
-import { useState, useCallback, useEffect } from "react";
-import { useParams } from "next/navigation";
-import axios from "axios";
 import styles from "@/styles/BookInfo.module.css";
 
-const BookAbout = () => {
-  const { id } = useParams();
-  const [book, setBook] = useState();
-
-  const fetchData = useCallback(async () => {
-    try {
-      const { data } = await axios.get(
-        `https://us-central1-summaristt.cloudfunctions.net/getBook?id=${id}`,
-      );
-      setBook(data);
-      console.log(data);
-    } catch (error) {
-      console.log("Error fetching book data", error);
-    }
-  }, [id]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
+const BookAbout = ({ book }) => {
   function renderHelper(item) {
     return (
       <>
@@ -32,10 +9,10 @@ const BookAbout = () => {
           What&apos;s it about
         </div>
         <div className={styles.inner_book__tagsWrapper}>
-            <div className="inner_book__tag">
+            <div className={styles.inner_book__tag}>
                 {item?.tags?.[0]}
             </div>
-            <div className="inner_book__tag">
+            <div className={styles.inner_book__tag}>
                 {item?.tags?.[1]}
             </div>
         </div>
@@ -52,7 +29,7 @@ const BookAbout = () => {
 
   return (
     <>
-      This is the about Section
+      
       {book && renderHelper(book)}
     </>
   );

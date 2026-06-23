@@ -13,7 +13,19 @@ import SelectedBooks from "@/components/forYouSections/SelectedBooks";
 import RecommendedBooks from "@/components/forYouSections/RecommendedBooks";
 import SuggestedBooks from "@/components/forYouSections/SuggestedBooks";
 
-function ForYou() {
+async function ForYou() {
+
+  const [selectedRes, recommendedRes, suggestedRes] = 
+  await Promise.all([
+    fetch("https://us-central1-summaristt.cloudfunctions.net/getBooks?status=selected"),
+    fetch("https://us-central1-summaristt.cloudfunctions.net/getBooks?status=recommended"),
+    fetch("https://us-central1-summaristt.cloudfunctions.net/getBooks?status=suggested"),
+  ]);
+
+  const [selectedBooks, recommendedBooks, suggestedBooks] = await Promise.all([
+    selectedRes.json(), recommendedRes.json(), suggestedRes.json(),
+  ])
+
   return (
     <>
       <div className={styles.search_background}>
@@ -114,9 +126,9 @@ function ForYou() {
       <div className={styles.row}>
         <div className={styles.container}>
           <div className={styles.for_you__wrapper}>
-            <SelectedBooks />
-            <RecommendedBooks />
-            <SuggestedBooks />
+            <SelectedBooks book={selectedBooks[0]} />
+            <RecommendedBooks recBooks={recommendedBooks} />
+            <SuggestedBooks suggestedBooks={suggestedBooks} />
           </div>
         </div>
       </div>

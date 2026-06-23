@@ -39,6 +39,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section id="features">
         <div className="container">
           <div className="row">
@@ -138,6 +139,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section id="reviews">
         <div className="row">
           <div className="container">
@@ -204,6 +206,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section id="numbers">
         <div className="container">
           <div className="row">
@@ -239,6 +242,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
       <section id="footer">
         <div className="container">
           <div className="row">

@@ -1,29 +1,9 @@
-"use client";
-import { useCallback, useState, useEffect } from "react";
 import styles from "@/styles/ForYou.module.css";
 import Image from "next/image";
-import axios from "axios";
 import { CiClock2 } from "react-icons/ci";
 import { IoIosStarOutline } from "react-icons/io";
 
-const RecommendedBooks = () => {
-  const [recBooks, setRecBooks] = useState([]);
-
-  const getData = useCallback(async () => {
-    try {
-      const { data } = await axios.get(
-        "https://us-central1-summaristt.cloudfunctions.net/getBooks?status=recommended",
-      );
-      setRecBooks(data);
-    } catch (error) {
-      console.log("Error fetching data", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    getData();
-  }, [getData]);
-
+const RecommendedBooks = ({ recBooks }) => {
   function renderPremium(book) {
     return (
       <a

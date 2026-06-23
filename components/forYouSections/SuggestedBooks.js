@@ -1,30 +1,10 @@
-"use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import styles from "@/styles/ForYou.module.css";
 import Image from "next/image";
-import axios from "axios";
 import { CiClock2 } from "react-icons/ci";
 import { IoIosStarOutline } from "react-icons/io";
 
-const SuggestedBooks = () => {
-  const [suggestedBooks, setSuggestedBooks] = useState([]);
-
-  const fetchData = useCallback(async () => {
-    try {
-      const { data } = await axios.get(
-        "https://us-central1-summaristt.cloudfunctions.net/getBooks?status=suggested",
-      );
-      setSuggestedBooks(data);
-    } catch (error) {
-      console.log("Error fetching data", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time fetch on mount
-    fetchData();
-  }, [fetchData]);
-
+const SuggestedBooks = ({ suggestedBooks }) => {
   function renderHelper(item) {
     return (
       <a
