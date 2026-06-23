@@ -28,7 +28,7 @@ const RecommendedBooks = () => {
     return (
       <a
         key={book.id}
-        href={`/book`}
+        href={`/book/${book?.id}`}
         className={styles.for_you__recommendedBooks_link}
       >
         <div

@@ -8,6 +8,11 @@ import { RiBallPenLine } from "react-icons/ri";
 import { VscSettingsGear } from "react-icons/vsc";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { MdOutlineLogout } from "react-icons/md";
+import BookBasicInfo from "@/components/bookInfoSections/BookBasicInfo";
+import BookAbout from "@/components/bookInfoSections/BookAbout";
+import BookImage from "@/components/bookInfoSections/BookImage";
+
+
 const bookInfoPage = () => {
   return (
     <>
@@ -110,17 +115,10 @@ const bookInfoPage = () => {
         <div className={styles.container}>
             <div className={styles.innerWrapper}>
                 <div className={styles.innerBook}>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <BookBasicInfo />
+                    <BookAbout />
                 </div>
+                <BookImage />
                 <div className={styles.bookInfo_img}></div>
             </div>
         </div>

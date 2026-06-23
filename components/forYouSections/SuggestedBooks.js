@@ -28,7 +28,7 @@ const SuggestedBooks = () => {
   function renderHelper(item) {
     return (
       <a
-        href=""
+        href={`/book/${item?.id}`}
         className={styles.for_you__recommendedBooks_link}
         key={item?.id}
       >

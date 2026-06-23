@@ -29,7 +29,7 @@ const SelectedBooks = () => {
       <>
         <div className={styles.for_you__title}>Selected just for you</div>
         <audio src={booksInfo?.audioLink}>Audio Link</audio>
-        <a className={styles.selected__book} href="/book">
+        <a className={styles.selected__book} href={`/book/${booksInfo?.id}`}>
           <div className={styles.selected__book__subTitle}>
             <p className={styles.sub_text}>{booksInfo?.subTitle}</p>
           </div>
