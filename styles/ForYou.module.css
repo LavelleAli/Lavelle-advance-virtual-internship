@@ -143,10 +143,19 @@
   height: 24px;
 }
 
+
 .sideBar_link__text {
   margin-left: 2px;
   padding: 0;
   font-size: 16px;
+  cursor: pointer;
+}
+
+.sideBar_link__textNA {
+  margin-left: 2px;
+  padding: 0;
+  font-size: 16px;
+  cursor: not-allowed;
 }
 
 .sideBar_link__notAllowed {

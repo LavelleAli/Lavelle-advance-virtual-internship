@@ -1,17 +1,11 @@
 import React from "react";
 import styles from "@/styles/ForYou.module.css";
 import bookStyles from "@/styles/BookInfo.module.css";
-import Image from "next/image";
-import { GoSearch } from "react-icons/go";
-import { AiOutlineHome } from "react-icons/ai";
-import { BsBookmark } from "react-icons/bs";
-import { RiBallPenLine } from "react-icons/ri";
-import { VscSettingsGear } from "react-icons/vsc";
-import { IoIosHelpCircleOutline } from "react-icons/io";
-import { MdOutlineLogout } from "react-icons/md";
 import BookBasicInfo from "@/components/bookInfoSections/BookBasicInfo";
 import BookAbout from "@/components/bookInfoSections/BookAbout";
 import BookImage from "@/components/bookInfoSections/BookImage";
+import SideAndSearchBar from "@/components/SideAndSearchbar/SideAndSearchBar";
+
 
 const bookInfoPage = async ({ params }) => {
   const { id } = await params;
@@ -19,105 +13,11 @@ const bookInfoPage = async ({ params }) => {
     `https://us-central1-summaristt.cloudfunctions.net/getBook?id=${id}`,
   );
   const book = await res.json();
-  console.log(book);
+ 
 
   return (
     <>
-      <div className={styles.search_background}>
-        <div className={styles.search_wrapper}>
-          <figure></figure>
-          <div className={styles.search_content}>
-            <div className={styles.search}>
-              <div className={styles.search_input__wrapper}>
-                <input
-                  className={styles.search_input}
-                  type="text"
-                  placeholder="Search for books"
-                />
-                <div className={styles.search_icon}>
-                  <GoSearch className={styles.react_icon} />
-                </div>
-              </div>
-            </div>
-            <div className={styles.sideBar__toggleBtn}></div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.sideBar}>
-        <div className={styles.sideBar_logo}>
-          <Image src="/logo.png" alt="logo" width={200} height={200} />
-        </div>
-        <div className={styles.sideBar__wrapper}>
-          <div className={styles.sideBar__top}>
-            <a className={styles.sideBar_link__wrapper} href="/for-you">
-              <div
-                className={`${styles.sideBar_link__line} ${styles.active__tab}`}
-              ></div>
-              <div className={styles.sideBar_icon_wrapper}>
-                <AiOutlineHome className={styles.react_icon__sidebar} />
-              </div>
-              <div className={styles.sideBar_link__text}>For you</div>
-            </a>
-
-            <a className={styles.sideBar_link__wrapper} href="/for-you">
-              <div className={styles.sideBar_link__line}></div>
-              <div className={styles.sideBar_icon_wrapper}>
-                <BsBookmark className={styles.react_icon__sidebar} />
-              </div>
-              <div className={styles.sideBar_link__text}>My Library</div>
-            </a>
-
-            <div
-              className={`${styles.sideBar_link__wrapper} ${styles.sideBar_link__notAllowed}`}
-            >
-              <div className={styles.sideBar_link__line}></div>
-              <div className={styles.sideBar_icon_wrapper}>
-                <RiBallPenLine className={styles.react_icon__sidebar} />
-              </div>
-              <div className={styles.sideBar_link__text}>HighLights</div>
-            </div>
-            <div
-              className={`${styles.sideBar_link__wrapper} ${styles.sideBar_link__notAllowed}`}
-            >
-              <div className={styles.sideBar_link__line}></div>
-              <div className={styles.sideBar_icon_wrapper}>
-                <GoSearch className={styles.react_icon__sidebar} />
-              </div>
-              <div className={styles.sideBar_link__text}>Search</div>
-            </div>
-          </div>
-          <div className={styles.sideBer__bottom}>
-            <a className={styles.sideBar_link__wrapper} href="/for-you">
-              <div className={styles.sideBar_link__line}></div>
-              <div className={styles.sideBar_icon_wrapper}>
-                <VscSettingsGear className={styles.react_icon__sidebar} />
-              </div>
-              <div className={styles.sideBar_link__text}>Settings</div>
-            </a>
-
-            <div
-              className={`${styles.sideBar_link__wrapper} ${styles.sideBar_link__notAllowed}`}
-            >
-              <div className={styles.sideBar_link__line}></div>
-              <div className={styles.sideBar_icon_wrapper}>
-                <IoIosHelpCircleOutline
-                  className={styles.react_icon__sidebar}
-                />
-              </div>
-              <div className={styles.sideBar_link__text}>Help & Support</div>
-            </div>
-            <div
-              className={`${styles.sideBar_link__wrapper} ${styles.sideBar_link__notAllowed}`}
-            >
-              <div className={styles.sideBar_link__line}></div>
-              <div className={styles.sideBar_icon_wrapper}>
-                <MdOutlineLogout className={styles.react_icon__sidebar} />
-              </div>
-              <div className={styles.sideBar_link__text}>Login</div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <SideAndSearchBar/>     
       <div className={styles.row}>
         <div className={styles.container}>
           <div className={bookStyles.innerBookWrapper}>

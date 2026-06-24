@@ -1,9 +1,6 @@
 import "../styles/summarist.css";
 import Navbar from "@/components/Navbar";
-import { AiFillFileText, AiFillBulb, AiFillAudio } from "react-icons/ai";
-import { BsStarFill, BsStarHalf } from "react-icons/bs";
-import { BiCrown } from "react-icons/bi";
-import { RiLeafLine } from "react-icons/ri";
+import { FaFileLines, FaLightbulb, FaHeadphones, FaStar, FaStarHalfStroke, FaCrown, FaLeaf } from "react-icons/fa6";
 import LoginTrigger from "@/components/loginmodal/LoginTrigger";
 import LoginModalGate from "@/components/loginmodal/LoginModalGate";
 import Image from "next/image";
@@ -47,7 +44,7 @@ export default function Home() {
             <div className="features__wrapper">
               <div className="features">
                 <div className="features__icon">
-                  <AiFillFileText />
+                  <FaFileLines />
                 </div>
                 <div className="features__title">Read or listen</div>
                 <div className="features__sub--title">
@@ -56,7 +53,7 @@ export default function Home() {
               </div>
               <div className="features">
                 <div className="features__icon">
-                  <AiFillBulb />
+                  <FaLightbulb />
                 </div>
                 <div className="features__title">Find your next read</div>
                 <div className="features__sub--title">
@@ -65,7 +62,7 @@ export default function Home() {
               </div>
               <div className="features">
                 <div className="features__icon">
-                  <AiFillAudio />
+                  <FaHeadphones />
                 </div>
                 <div className="features__title">Briefcasts</div>
                 <div className="features__sub--title">
@@ -149,7 +146,7 @@ export default function Home() {
                 <div className="review__header">
                   <div className="review__name">Hanna M.</div>
                   <div className="review__stars">
-                    <BsStarFill />
+                    <FaStar />
                   </div>
                 </div>
                 <div className="review__body">
@@ -162,7 +159,7 @@ export default function Home() {
                 <div className="review__header">
                   <div className="review__name">David B.</div>
                   <div className="review__stars">
-                    <BsStarFill />
+                    <FaStar />
                   </div>
                 </div>
                 <div className="review__body">
@@ -175,7 +172,7 @@ export default function Home() {
                 <div className="review__header">
                   <div className="review__name">Nathan S.</div>
                   <div className="review__stars">
-                    <BsStarFill />
+                    <FaStar />
                   </div>
                 </div>
                 <div className="review__body">
@@ -189,7 +186,7 @@ export default function Home() {
                 <div className="review__header">
                   <div className="review__name">Ryan R.</div>
                   <div className="review__stars">
-                    <BsStarFill />
+                    <FaStar />
                   </div>
                 </div>
                 <div className="review__body">
@@ -214,15 +211,15 @@ export default function Home() {
             <div className="numbers__wrapper">
               <div className="numbers">
                 <div className="numbers__icon">
-                  <BiCrown />
+                  <FaCrown />
                 </div>
                 <div className="numbers__title">3 Million</div>
                 <div className="numbers__sub--title">Downloads on all platforms</div>
               </div>
               <div className="numbers">
                 <div className="numbers__icon numbers__star--icon">
-                  <BsStarFill />
-                  <BsStarHalf />
+                  <FaStar />
+                  <FaStarHalfStroke />
                 </div>
                 <div className="numbers__title">4.5 Stars</div>
                 <div className="numbers__sub--title">
@@ -231,7 +228,7 @@ export default function Home() {
               </div>
               <div className="numbers">
                 <div className="numbers__icon">
-                  <RiLeafLine />
+                  <FaLeaf />
                 </div>
                 <div className="numbers__title">97%</div>
                 <div className="numbers__sub--title">

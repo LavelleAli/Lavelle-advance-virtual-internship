@@ -2,7 +2,7 @@ import { useState } from "react";
 import { resetPassword } from "@/firebase/firebase";
 import { useDispatch } from "react-redux";
 import { closeModal } from "@/redux/slices/loginModal";
-import { TfiClose } from "react-icons/tfi";
+import { FaXmark } from "react-icons/fa6";
 import LoginModal from "./LoginModal";
 import "@/styles/ResetPassword.css";
 
@@ -32,7 +32,7 @@ function ResetPasswordModal() {
               className="close_Lgn"
               onClick={() => dispatch(closeModal())}
             >
-              <TfiClose className="close_Icn" />
+              <FaXmark className="close_Icn" />
             </button>
 
             <h2 className="login_title">Reset your password</h2>

@@ -1,13 +1,18 @@
 import styles from "@/styles/BookInfo.module.css";
 import React from "react";
-import { FaRegStar } from "react-icons/fa";
-import { CiClock2 } from "react-icons/ci";
-import { FiMic } from "react-icons/fi";
-import { HiOutlineLightBulb } from "react-icons/hi";
-import { LuBookOpenText } from "react-icons/lu";
-import { FaRegBookmark } from "react-icons/fa";
+import {
+  FaRegStar,
+  FaRegClock,
+  FaMicrophone,
+  FaRegLightbulb,
+  FaBookOpen,
+  FaRegBookmark,
+} from "react-icons/fa6";
+import ReadButton from "./ReadButton";
+import ListenButton from "./ListenButton";
 
 const BookBasicInfo = ({ book }) => {
+  
   function renderHelper(item) {
     return (
       <>
@@ -30,21 +35,21 @@ const BookBasicInfo = ({ book }) => {
 
             <div className={styles.inner_book__description}>
               <div className={styles.inner_book__icon}>
-                <CiClock2 />
+                <FaRegClock />
               </div>
               <div className={styles.inner_book__duration}>03:24</div>
             </div>
 
             <div className={styles.inner_book__description}>
               <div className={styles.inner_book__icon}>
-                <FiMic />
+                <FaMicrophone />
               </div>
               <div className={styles.inner_book__type}>{item?.type}</div>
             </div>
 
             <div className={styles.inner_book__description}>
               <div className={styles.inner_book__icon}>
-                <HiOutlineLightBulb />
+                <FaRegLightbulb />
               </div>
               <div className={styles.inner_book__keyIdeas}>
                 {item?.keyIdeas} Key Ideas
@@ -53,18 +58,18 @@ const BookBasicInfo = ({ book }) => {
           </div>
         </div>
         <div className={styles.inner_book__readBtnWrapper}>
-          <button className={styles.inner_book__readBtn}>
+          <ReadButton id={item?.id} className={styles.inner_book__readBtn}>
             <div className={styles.inner_book__readIcon}>
-              <LuBookOpenText />
+              <FaBookOpen />
             </div>
             <div className={styles.inner_book__readText}>Read</div>
-          </button>
-          <button className={styles.inner_book__readBtn}>
+          </ReadButton>
+          <ListenButton id={item?.id} className={styles.inner_book__readBtn}>
             <div className={styles.inner_book__readIcon}>
-              <FiMic />
+              <FaMicrophone />
             </div>
             <div className={styles.inner_book__readText}>Listen</div>
-          </button>
+          </ListenButton>
         </div>
         <div className={styles.inner_book__bookmark}>
           <div className={styles.inner_book__readIcon}>

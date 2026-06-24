@@ -1,7 +1,6 @@
 import styles from "@/styles/ForYou.module.css";
 import Image from "next/image";
-import { CiClock2 } from "react-icons/ci";
-import { IoIosStarOutline } from "react-icons/io";
+import { FaRegClock, FaRegStar } from "react-icons/fa6";
 
 const RecommendedBooks = ({ recBooks }) => {
   function renderPremium(book) {
@@ -38,13 +37,13 @@ const RecommendedBooks = ({ recBooks }) => {
         <div className={styles.recommended_book__detailsWrapper}>
           <div className={styles.recommended_book__details}>
             <div className={styles.recommended_book__detailsIcon}>
-              <CiClock2 />
+              <FaRegClock />
             </div>
             <div className={styles.recommended_book__detailsText}>03:24</div>
           </div>
           <div className={styles.recommended_book__details}>
             <div className={styles.recommended_book__detailsIcon}>
-              <IoIosStarOutline />
+              <FaRegStar />
             </div>
             <div className={styles.recommended_book__detailsText}>
               {Math.max(book?.averageRating)}
@@ -64,8 +63,6 @@ const RecommendedBooks = ({ recBooks }) => {
           We think you&apos;ll like these
         </div>
         <div className={styles.for_you__recommendedBooks}>
-          {/* {recBooks.map((book) => renderNonPremium(book)).slice(0, 2)} */}
-
           {recBooks.map((book) => renderPremium(book))}
         </div>
       </div>

@@ -3,6 +3,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.72);
+  z-index: 1000;
 }
 
 .login_wrapper {
@@ -14,6 +15,7 @@
   background-color: #ffffff;
   border: 1px solid black;
   border-radius: 10px;
+  
 }
 
 .login_auth {
@@ -22,6 +24,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 /* ---------------------------- */

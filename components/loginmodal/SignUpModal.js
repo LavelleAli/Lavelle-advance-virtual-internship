@@ -1,7 +1,7 @@
 import Image from "next/image";
 import "@/styles/SignUp.css";
 import LoginModal from "./LoginModal";
-import { TfiClose } from "react-icons/tfi";
+import { FaXmark } from "react-icons/fa6";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "@/redux/slices/loginModal";
@@ -41,7 +41,7 @@ const SignUpModal = () => {
               className="close_Lgn"
               onClick={() => dispatch(closeModal())}
             >
-              <TfiClose className="close_Icn" />
+              <FaXmark className="close_Icn" />
             </button>
 
             <h2 className="login_title">Sign up to Summarist</h2>

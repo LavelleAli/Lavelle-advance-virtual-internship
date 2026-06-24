@@ -2,8 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import "@/styles/LoginModal.css";
-import { FaUser } from "react-icons/fa6";
-import { TfiClose } from "react-icons/tfi";
+import { FaUser, FaXmark } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { closeModal } from "@/redux/slices/loginModal";
@@ -57,7 +56,7 @@ const LoginModal = () => {
         <div className="login_auth">
 
           <button className="close_Lgn" onClick={() => dispatch(closeModal())}>
-          <TfiClose className="close_Icn" />
+          <FaXmark className="close_Icn" />
           </button>
 
           <h2 className="login_title">Log in to Summarist</h2>

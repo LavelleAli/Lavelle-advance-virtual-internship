@@ -1,6 +1,6 @@
 import styles from "@/styles/ForYou.module.css";
 import Image from "next/image";
-import { FaPlayCircle } from "react-icons/fa";
+import { FaCirclePlay } from "react-icons/fa6";
 
 const SelectedBooks = ({ book }) => {
   function renderHelper(booksInfo) {
@@ -32,7 +32,7 @@ const SelectedBooks = ({ book }) => {
               </div>
               <div className={styles.selected_book__durationWrapper}>
                 <div className={styles.selected_book__icon}>
-                  <FaPlayCircle className={styles.playCircleStyle} />
+                  <FaCirclePlay className={styles.playCircleStyle} />
                 </div>
                 <div className={styles.selected_book__duration}>
                   {" "}
