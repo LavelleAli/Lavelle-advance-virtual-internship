@@ -1,6 +1,6 @@
 "use client";
 import { useAudioPlayerContext } from "@/components/context/AudioPlayerContext";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import {
   BsFillFastForwardFill,
   BsFillPauseFill,
@@ -14,22 +14,77 @@ import {
 import styles from "@/styles/Player.module.css";
 
 const Controls = () => {
-  const { currentTrack, audioRef } = useAudioPlayerContext();
+
+  const { currentTrack, audioRef, setDuration, duration, setTimeProgress, progressBarRef } = useAudioPlayerContext();
   const [isShuffle, setIsShuffle] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const playAnimationRef = useRef(null)
+
+  const onLoadedMetadata = () => {
+    const seconds = audioRef.current?.duration;
+    console.log('onLoadedMetadata fired - seconds:', seconds)
+    if (seconds !== undefined) {
+      setDuration(seconds)};
+      if  (progressBarRef.current) {
+        progressBarRef.current.max = seconds.toString();
+      }
+  }
+
+useEffect(() => {
+  if (audioRef.current && audioRef.current.readyState >= 1) {
+    onLoadedMetadata();
+  }
+}, [audioRef]);
+
+
+
+  const updateProgress = useCallback(() => {
+    if (audioRef.current && progressBarRef.current && duration) {
+      const currentTime = audioRef.current.currentTime;
+      setTimeProgress(currentTime);
+      progressBarRef.current.value = currentTime.toString();
+      progressBarRef.current.style.setProperty(
+        '--range-progress',
+        `${(currentTime / duration) * 100}%`
+      )
+    }
+  }, [duration, setTimeProgress, audioRef, progressBarRef]);
+
+
+  const startAnimation = useCallback(() => {
+    if (audioRef.current && progressBarRef.current && duration) {
+      const animate = () => {
+        updateProgress();
+        playAnimationRef.current = requestAnimationFrame(animate)
+      };
+      playAnimationRef.current = requestAnimationFrame(animate)
+    }
+  })
+
 
   useEffect(() => {
     if (isPlaying) {
       audioRef.current?.play();
+      startAnimation()
     } else {
       audioRef.current?.pause();
+      if (playAnimationRef.current !== null) {
+        cancelAnimationFrame(playAnimationRef.current);
+        playAnimationRef.current = null;
+      }
+      updateProgress();
     }
-  }, [isPlaying, audioRef]);
+    return () => {
+      if (playAnimationRef.current !== null)  {
+        cancelAnimationFrame(playAnimationRef.current)
+      }
+    }
+  }, [isPlaying, startAnimation, updateProgress, audioRef]);
 
   return (
     <div className={styles.ap_controls}>
-      <audio src={currentTrack.src} ref={audioRef} />
+      <audio src={currentTrack.src} ref={audioRef} onLoadedMetadata={onLoadedMetadata} />
 
       <button onClick={() => {}}>
         <BsSkipStartFill size={20} />
