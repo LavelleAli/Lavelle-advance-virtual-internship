@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "@/styles/Player.module.css";
+import AudioPlayer from "./audioplayer/AudioPlayer";
+import { AudioPlayerProvider } from "../context/AudioPlayerContext";
 
 const PlayerTitle = ({ book }) => {
   function renderHelper(item) {
@@ -15,10 +17,9 @@ const PlayerTitle = ({ book }) => {
             </div>
           </div>
           <div className={styles.audio_wrapper}>
-            <audio src=""></audio>
-            <div className={styles.audio_track__wrapper}></div>
-            <div className={styles.audio_controls__wrapper}></div>
-            <div className={styles.audio_progress__wrapper}></div>
+            <AudioPlayerProvider>
+              <AudioPlayer/>
+            </AudioPlayerProvider>
           </div>
         </div>
       </>

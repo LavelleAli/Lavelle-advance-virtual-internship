@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     overflow-y: auto;
-    height: calc(100vh -160px);
+    height: calc(100vh - 140px);
 }
 
 .audio_book__summary {
@@ -27,4 +27,151 @@
     white-space: pre-line;
     line-height: 1.4;
     color: #032b41;
+}
+
+
+/* ============================ */
+/* Audio Player */
+/* ============================ */
+
+
+.ap_container {
+    width: 100%;
+    height: 60px;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #e1e7ea;
+    background-color: #042330;
+    padding: 0 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9998;
+
+    /* min-height: 2rem;
+    background: #340707;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 0.5rem 10px; */
+}
+
+@media (min-width: 1024px) {
+    .ap_container {
+        flex-direction: row;
+    }
+}
+
+
+/* ============================= */
+/* Audio Player Controls: */
+/* ============================= */
+.ap_trackControls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    margin: auto;
+    flex: 1 1 0%;
+}
+
+.ap_volumeControls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #9ca3af;
+}
+
+.ap_drawer {
+    transition: max-height 300ms ease-in-out;
+    overflow: hidden;
+    max-height: 0;
+}
+
+.ap_drawer_open {
+    max-height: 18rem;
+}
+
+.ap_playlist {
+    background: #4c4848;
+    color: #fff;
+    max-height: 18rem;
+    overflow-y: auto;
+}
+
+.ap_controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.ap_controlActive {
+    color: #f50;
+}
+
+
+/* ========================== */
+/* Audio Player Track Info: */
+/* ========================== */
+.ap_trackInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #e5e7eb;
+}
+
+.ap_trackThumbnail {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e5e7eb;
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+
+.ap_trackThumbnailImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ap_trackThumbnailFallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #d1d5db;
+    border-radius: 0.375rem;
+}
+
+.ap_trackThumbnailIcon {
+    font-size: 1.25rem;
+    color: #4b5563;
+}
+
+.ap_trackTitle {
+    font-weight: 700;
+}
+
+.ap_trackAuthor {
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+
+@media (min-width: 1024px) {
+    .ap_trackTitle {
+        max-width: 16rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 }

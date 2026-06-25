@@ -13,12 +13,10 @@ const PlayerPage = async ({ params }) => {
 
   return (
     <>
-      <SideAndSearchBar />
+      <div className={styles.sideBar_inPlayer}>
+        <SideAndSearchBar />
+      </div>
       <PlayerTitle book={book} />
-      {/* <div className={styles.row}>
-        <div className={styles.container}>
-        </div>
-      </div> */}
     </>
   );
 };
