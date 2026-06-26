@@ -96,13 +96,6 @@
   max-height: 18rem;
 }
 
-.ap_playlist {
-  background: #4c4848;
-  color: #fff;
-  max-height: 18rem;
-  overflow-y: auto;
-}
-
 .ap_controls {
   display: flex;
   gap: 1rem;
@@ -215,4 +208,83 @@
     height: 4px;
     border-radius: 2px;
     background:  rgb(43, 217, 124) var(--range-progress);
+}
+
+
+/* ========================== */
+/* Audio Player Volume Control: */
+/* ========================== */
+.ap_volume_row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.ap_volume_input {
+    cursor: pointer;
+}
+
+
+/* ========================== */
+/* Audio Player Playlist: */
+/* ========================== */
+.ap_playlist_list {
+    background-color: #4c4848;
+    color: #fff;
+    max-height: 18rem;
+    overflow-y: auto;
+}
+
+.ap_playlist_item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 10px;
+    cursor: pointer;
+}
+
+.ap_playlist_item_active {
+    background-color: #a66646;
+}
+
+.ap_playlist_thumbnail {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e5e7eb;
+    border-radius: 0.125rem;
+    overflow: hidden;
+}
+
+.ap_playlist_thumbnail_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ap_playlist_thumbnail_fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #d1d5db;
+    border-radius: 0.375rem;
+}
+
+.ap_playlist_thumbnail_icon {
+    font-size: 1.25rem;
+    color: #4b5563;
+}
+
+.ap_playlist_title {
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.ap_playlist_author {
+    font-size: 0.875rem;
+    color: #9ca3af;
 }

@@ -29,9 +29,7 @@ const AudioPlayer = () => {
         <div
           className={`${styles.ap_drawer} ${openDrawer ? styles.ap_drawer_open : ""}`}
         >
-          <div className={styles.ap_playlist}>
-            <Playlist />
-          </div>
+          <Playlist />
         </div>
       </div>
     </div>

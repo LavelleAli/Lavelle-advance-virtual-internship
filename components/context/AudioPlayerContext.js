@@ -8,7 +8,9 @@ const AudioPlayerContext = createContext(undefined);
 export const AudioPlayerProvider = ({ children }) => {
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [currentTrack, setCurrentTrack] = useState(tracks[0]);
+  const [trackIndex, setTrackIndex] = useState(0)
+  const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex]);
+  const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef(null);
   const progressBarRef = useRef(null);
   const contextValue = {
@@ -20,6 +22,9 @@ export const AudioPlayerProvider = ({ children }) => {
     setTimeProgress,
     duration,
     setDuration,
+    setTrackIndex,
+    isPlaying,
+    setIsPlaying,
   };
 
   return (

@@ -12,13 +12,13 @@ import {
   BsRepeat,
 } from "react-icons/bs";
 import styles from "@/styles/Player.module.css";
+import { tracks } from "../data/Tracks";
 
 const Controls = () => {
 
-  const { currentTrack, audioRef, setDuration, duration, setTimeProgress, progressBarRef } = useAudioPlayerContext();
+  const { currentTrack, audioRef, setDuration, duration, setTimeProgress, progressBarRef, setTrackIndex, setCurrentTrack, isPlaying, setIsPlaying } = useAudioPlayerContext();
   const [isShuffle, setIsShuffle] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const playAnimationRef = useRef(null)
 
   const onLoadedMetadata = () => {
@@ -82,14 +82,75 @@ useEffect(() => {
     }
   }, [isPlaying, startAnimation, updateProgress, audioRef]);
 
+
+
+  const skipForward = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime += 10;
+      updateProgress()
+    }
+  };
+
+  const skipBackward = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime -= 10;
+      updateProgress();
+    }
+  };
+
+  const handlePrevious = useCallback(() => {
+    setTrackIndex((prev) => {
+      const newIndex = isShuffle
+      ? Math.floor(Math.random() * tracks.length)
+      : prev === 0
+      ? tracks.length - 1
+      : prev - 1;
+      setCurrentTrack(tracks[newIndex]);
+      return newIndex;
+    });
+  },[isShuffle, setCurrentTrack, setTrackIndex]);
+
+  const handleNext = useCallback(() => {
+    setTrackIndex((prev) => {
+      const newIndex = isShuffle 
+      ? Math.floor(Math.random() * tracks.length)
+      : prev >= tracks.length - 1
+      ? 0
+      : prev + 1;
+      setCurrentTrack(tracks[newIndex]);
+      return newIndex;
+    })
+  }, [isShuffle, setCurrentTrack, setTrackIndex]);
+
+  useEffect(() => {
+    const currentAudioRef= audioRef.current;
+    if (currentAudioRef) {
+      currentAudioRef.onended = () => {
+        if (isRepeat) {
+          currentAudioRef.play();
+        } else {
+          handleNext();
+        }
+      };
+    }
+    return () =>{
+      if (currentAudioRef) {
+        currentAudioRef.onended = null;
+      }
+    };
+  }, [isRepeat, handleNext, audioRef]);
+
+
+
   return (
     <div className={styles.ap_controls}>
       <audio src={currentTrack.src} ref={audioRef} onLoadedMetadata={onLoadedMetadata} />
 
-      <button onClick={() => {}}>
+      <button onClick={handlePrevious}>
         <BsSkipStartFill size={20} />
       </button>
-      <button onClick={() => {}}>
+
+      <button onClick={skipBackward}>
         <BsFillRewindFill size={20} />
       </button>
 
@@ -101,10 +162,10 @@ useEffect(() => {
         )}
       </button>
 
-      <button onClick={() => {}}>
+      <button onClick={skipForward}>
         <BsFillFastForwardFill size={20} />
       </button>
-      <button onClick={() => {}}>
+      <button onClick={handleNext}>
         <BsSkipEndFill size={20} />
       </button>
       <button onClick={() => setIsShuffle((prev) => !prev)}>
