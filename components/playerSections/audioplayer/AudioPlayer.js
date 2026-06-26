@@ -9,7 +9,7 @@ import Playlist from "./Playlist";
 import styles from "@/styles/Player.module.css";
 
 const AudioPlayer = () => {
-  const [openDrawer, setOpenDrawer] = useState(false);
+
   return (
     <div>
       <div className={styles.ap_wrapper}>
@@ -17,20 +17,12 @@ const AudioPlayer = () => {
           <TrackInfo />
           <div className={styles.ap_trackControls}>
             <Controls />
+          </div>
+          <div className={styles.ap_progressControls}>
             <ProgressBar />
           </div>
-          <div className={styles.ap_volumeControls}>
-            <VolumeControl />
-            <button onClick={() => setOpenDrawer((prev) => !prev)}>
-              <RiMenuAddLine />
-            </button>
-          </div>
         </div>
-        <div
-          className={`${styles.ap_drawer} ${openDrawer ? styles.ap_drawer_open : ""}`}
-        >
-          <Playlist />
-        </div>
+      
       </div>
     </div>
   );

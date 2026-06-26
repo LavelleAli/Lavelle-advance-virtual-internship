@@ -9,7 +9,7 @@ const PlayerPage = async ({ params }) => {
     `https://us-central1-summaristt.cloudfunctions.net/getBook?id=${id}`,
   );
   const book = await res.json();
-  console.log(book);
+  // console.log(book);
 
   return (
     <>

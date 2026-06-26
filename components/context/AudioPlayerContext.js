@@ -5,11 +5,20 @@ import { tracks } from "../playerSections/data/Tracks";
 
 const AudioPlayerContext = createContext(undefined);
 
-export const AudioPlayerProvider = ({ children }) => {
+export const AudioPlayerProvider = ({ children, book }) => {
+  const bookTrack = book
+    ? {
+        title: book.title,
+        src: book.audioLink,
+        author: book.author,
+        thumbnail: book.imageLink,
+      }
+    : null;
+
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [trackIndex, setTrackIndex] = useState(0)
-  const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex]);
+  const [currentTrack, setCurrentTrack] = useState(bookTrack);
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef(null);
   const progressBarRef = useRef(null);

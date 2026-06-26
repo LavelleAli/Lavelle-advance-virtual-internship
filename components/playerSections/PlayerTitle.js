@@ -17,7 +17,7 @@ const PlayerTitle = ({ book }) => {
             </div>
           </div>
           <div className={styles.audio_wrapper}>
-            <AudioPlayerProvider>
+            <AudioPlayerProvider book={item}>
               <AudioPlayer/>
             </AudioPlayerProvider>
           </div>

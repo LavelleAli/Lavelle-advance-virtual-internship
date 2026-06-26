@@ -57,6 +57,7 @@ const BookBasicInfo = ({ book }) => {
             </div>
           </div>
         </div>
+
         <div className={styles.inner_book__readBtnWrapper}>
           <ReadButton id={item?.id} className={styles.inner_book__readBtn}>
             <div className={styles.inner_book__readIcon}>
@@ -71,6 +72,7 @@ const BookBasicInfo = ({ book }) => {
             <div className={styles.inner_book__readText}>Listen</div>
           </ListenButton>
         </div>
+        
         <div className={styles.inner_book__bookmark}>
           <div className={styles.inner_book__readIcon}>
             <FaRegBookmark />
