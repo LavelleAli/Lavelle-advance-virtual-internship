@@ -13,7 +13,7 @@ import FooterSection from "@/components/choosePlanSections/FooterSection";
 const Chooseplane = () => {
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.plan_selection_page}>
         <div className={`${styles.wrapper} ${styles.wrapper_full}`}>
           <div
             className={`${styles.sideBar_ovaerLay} ${styles.sideBar_ovaerLay__hidden}`}

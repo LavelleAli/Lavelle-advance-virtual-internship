@@ -10,7 +10,7 @@ const PlanFeatures = () => {
       <div className={styles.plan_features__wrapper}>
         <div className={styles.plan_features}>
           <figure className={styles.plan_feature__icon}>
-            <AiFillFileText />
+            <AiFillFileText className={styles.icon_img} />
           </figure>
           <div className={styles.plan_feature__text}>
             <b>Key ideas in a few minutes</b> with many books to read
@@ -18,7 +18,7 @@ const PlanFeatures = () => {
         </div>
         <div className={styles.plan_features}>
           <figure className={styles.plan_feature__icon}>
-            <RiPlantFill />
+            <RiPlantFill className={styles.icon_img} />
           </figure>
           <div className={styles.plan_feature__text}>
             <b>3 million</b> people growing with Summarist everyday
@@ -26,7 +26,7 @@ const PlanFeatures = () => {
         </div>
         <div className={styles.plan_features}>
           <figure className={styles.plan_feature__icon}>
-            <FaHandshake />
+            <FaHandshake className={styles.icon_img} />
           </figure>
           <div className={styles.plan_feature__text}>
             <b>Precise recommendations</b> collections curated by experts

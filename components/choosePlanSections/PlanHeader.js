@@ -15,6 +15,7 @@ const PlanHeader = () => {
           </div>
           <figure className={styles.plan_img__mask}>
             <Image
+            className={styles.plan_header__img}
               src={"/pricing-top.png"}
               width={200}
               height={200}

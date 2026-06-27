@@ -4,7 +4,7 @@ import styles from  '@/styles/ChoosPlane.module.css';
 const FooterSection = () => {
   return (
     <>
-      <section id="footer">
+      <section id={styles.footer}>
         <div className={styles.container}>
           <div className={styles.row}>
             <div className={styles.footer_top__wrapper}>
@@ -12,16 +12,16 @@ const FooterSection = () => {
                 <div className={styles.footer_link_title}>Actions</div>
                 <div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Summarist Magazine</a>
+                    <a className={styles.footer_link} href="">Summarist Magazine</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Cancel Subscription</a>
+                    <a className={styles.footer_link} href="">Cancel Subscription</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Help</a>
+                    <a className={styles.footer_link} href="">Help</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Contact Us</a>
+                    <a className={styles.footer_link} href="">Contact Us</a>
                   </div>
                 </div>
               </div>
@@ -29,16 +29,16 @@ const FooterSection = () => {
                 <div className={styles.footer_link_title}>Useful Links</div>
                 <div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Pricing</a>
+                    <a className={styles.footer_link} href="">Pricing</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Summarist Business</a>
+                    <a className={styles.footer_link} href="">Summarist Business</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Gift Cards</a>
+                    <a className={styles.footer_link} href="">Gift Cards</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Authors & Publishers</a>
+                    <a className={styles.footer_link} href="">Authors & Publishers</a>
                   </div>
                 </div>
               </div>
@@ -46,16 +46,16 @@ const FooterSection = () => {
                 <div className={styles.footer_link_title}>Company</div>
                 <div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">About</a>
+                    <a className={styles.footer_link} href="">About</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Careers</a>
+                    <a className={styles.footer_link} href="">Careers</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Partners</a>
+                    <a className={styles.footer_link} href="">Partners</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Code of Conduct</a>
+                    <a className={styles.footer_link} href="">Code of Conduct</a>
                   </div>
                 </div>
               </div>
@@ -63,22 +63,22 @@ const FooterSection = () => {
                 <div className={styles.footer_link_title}>Other</div>
                 <div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Sitemap</a>
+                    <a className={styles.footer_link} href="">Sitemap</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Legal Notice</a>
+                    <a className={styles.footer_link} href="">Legal Notice</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Terms of Service</a>
+                    <a className={styles.footer_link} href="">Terms of Service</a>
                   </div>
                   <div className={styles.footer_link__wrapper}>
-                    <a href="">Privacy Policies</a>
+                    <a className={styles.footer_link} href="">Privacy Policies</a>
                   </div>
                 </div>
               </div>
             </div>
             <div className={styles.footer_copyright__wrapper}>
-                <div className={styles.footer_copyright}> Copyright c 2023 Summarist</div>
+                <div className={styles.footer_copyright}> Copyright © 2023 Summarist</div>
             </div>
           </div>
         </div>
