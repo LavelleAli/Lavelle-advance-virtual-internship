@@ -1,0 +1,61 @@
+.card {
+  max-width: 480px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.email {
+  color: #032b41;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.status__premium {
+  background-color: rgba(43, 224, 128, 0.15);
+  color: #032b41;
+}
+
+.status__standard {
+  background-color: #f3f3f3;
+  color: #6b7280;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn {
+  width: 100%;
+  background-color: #2be080;
+  color: #032b41;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: #2bd474;
+}

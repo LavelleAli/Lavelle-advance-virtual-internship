@@ -82,7 +82,7 @@ const SideAndSearchBar = () => {
             </div>
           </div>
           <div className={styles.sideBer__bottom}>
-            <a className={styles.sideBar_link__wrapper} href="/for-you">
+            <a className={styles.sideBar_link__wrapper} href="/settings">
               <div className={styles.sideBar_link__line}></div>
               <div className={styles.sideBar_icon_wrapper}>
                 <FaGear className={styles.react_icon__sidebar} />

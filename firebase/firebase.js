@@ -1,16 +1,17 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, addDoc, collection } from "firebase/firestore"
-import { 
-  createUserWithEmailAndPassword, 
-  getAuth, 
+import { getFirestore, addDoc, collection, onSnapshot, query, where } from "firebase/firestore"
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
   signInWithEmailAndPassword,
   signInWithPopup,
-  signInAnonymously, 
+  signInAnonymously,
   signOut,
-  GoogleAuthProvider, 
+  GoogleAuthProvider,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import { getFunctions, httpsCallable } from "firebase/functions";
 import { toast } from "react-toastify";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -116,8 +117,71 @@ const resetPassword = async (email) => {
   }
 }
 
+// Requires the "Run Subscriptions with Stripe" Firebase Extension to be
+// installed on this project, configured with matching Stripe price IDs.
+const getCheckoutUrl = async (priceId) => {
+  const userId = auth.currentUser?.uid;
+  if (!userId) throw new Error("User is not authenticated");
+
+  const checkoutSessionRef = collection(db, "customers", userId, "checkout_sessions");
+
+  const docRef = await addDoc(checkoutSessionRef, {
+    price: priceId,
+    success_url: window.location.origin,
+    cancel_url: window.location.origin,
+  });
+
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onSnapshot(docRef, (snap) => {
+      const { error, url } = snap.data();
+      if (error) {
+        unsubscribe();
+        reject(new Error(`An error occurred: ${error.message}`));
+      }
+      if (url) {
+        unsubscribe();
+        resolve(url);
+      }
+    });
+  });
+};
+
+const getPortalUrl = async () => {
+  const user = auth.currentUser;
+  if (!user) throw new Error("User is not authenticated");
+
+  const functions = getFunctions();
+  const functionRef = httpsCallable(functions, "ext-firestore-stripe-payments-createPortalLink");
+  const { data } = await functionRef({
+    customerId: user.uid,
+    returnUrl: window.location.origin,
+  });
+
+  if (!data?.url) throw new Error("No portal url returned");
+  return data.url;
+};
+
+const getPremiumStatus = async () => {
+  const userId = auth.currentUser?.uid;
+  if (!userId) throw new Error("User not logged in");
+
+  const subscriptionsRef = collection(db, "customers", userId, "subscriptions");
+  const q = query(subscriptionsRef, where("status", "in", ["trialing", "active"]));
+
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        unsubscribe();
+        resolve(snapshot.docs.length > 0);
+      },
+      reject
+    );
+  });
+};
+
 const logout = () => {
   signOut(auth);
 };
 
-export { db, auth, googleProvider, login, googleSignIn, emailSignUp, logout, loginGuest, googleSignUp, resetPassword };
+export { db, auth, googleProvider, login, googleSignIn, emailSignUp, logout, loginGuest, googleSignUp, resetPassword, getCheckoutUrl, getPortalUrl, getPremiumStatus };
