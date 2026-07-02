@@ -5,8 +5,7 @@ import { toast } from "react-toastify";
 import styles from "@/styles/Settings.module.css";
 import forYouStyles from "@/styles/ForYou.module.css";
 import SideAndSearchBar from "@/components/SideAndSearchbar/SideAndSearchBar";
-import Logout from "@/components/loginmodal/Logout";
-import { getPortalUrl, getPremiumStatus } from "@/firebase/firebase";
+import { getPortalUrl, getPremiumStatus, auth } from "@/firebase/firebase";
 import Link from "next/link";
 
 const Settings = () => {
@@ -14,9 +13,13 @@ const Settings = () => {
   const [isPremium, setIsPremium] = useState(null);
   const [isLoadingStatus, setIsLoadingStatus] = useState(true);
   const [isRedirecting, setIsRedirecting] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
 
   useEffect(() => {
     if (!user) return;
+    setUserEmail(
+      auth.currentUser?.email ?? "No email account associated with this user",
+    );
     getPremiumStatus()
       .then(setIsPremium)
       .catch((error) =>
@@ -84,11 +87,13 @@ const Settings = () => {
               </>
             )}
           </div>
-          
+
           <div className={styles.separator}></div>
-          <div>
+
+          <div className={styles.top_card}>
             <h1>Email</h1>
           </div>
+          {userEmail}
         </div>
       </div>
     </>
