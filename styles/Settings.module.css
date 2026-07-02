@@ -1,9 +1,25 @@
+
+.header {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.separator {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 16px 0;
+}
+
 .card {
   max-width: 480px;
   background-color: #fff;
   border-radius: 8px;
-  padding: 32px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.top_card {
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .email {
@@ -17,9 +33,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 16px;
+  padding: 8px 0;
   border-radius: 4px;
-  margin-bottom: 24px;
   font-weight: 600;
 }
 
@@ -29,8 +44,7 @@
 }
 
 .status__standard {
-  background-color: #f3f3f3;
-  color: #6b7280;
+  color: #032b41;
 }
 
 .actions {
@@ -40,7 +54,7 @@
 }
 
 .btn {
-  width: 100%;
+  width: 40%;
   background-color: #2be080;
   color: #032b41;
   height: 40px;
@@ -50,6 +64,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .btn:disabled {
