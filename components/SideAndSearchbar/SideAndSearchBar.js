@@ -1,23 +1,28 @@
-import React from 'react'
+"use client";
+import React from "react";
 import LoginTrigger from "@/components/loginmodal/LoginTrigger";
 import LoginModalGate from "@/components/loginmodal/LoginModalGate";
+import Logout from "@/components/loginmodal/Logout";
+import { useSelector } from "react-redux";
 import styles from "@/styles/ForYou.module.css";
 import {
-  FaMagnifyingGlass,
-  FaHouse,
   FaRegBookmark,
-  FaPen,
-  FaGear,
   FaRegCircleQuestion,
   FaArrowRightFromBracket,
 } from "react-icons/fa6";
+import { GoGear } from "react-icons/go";
+import { RiBallPenLine } from "react-icons/ri";
+import { AiOutlineHome } from "react-icons/ai";
+import { RxMagnifyingGlass } from "react-icons/rx";
 import Image from "next/image";
-
+import Link from "next/link";
 
 const SideAndSearchBar = () => {
+  const user = useSelector((state) => state.auth.user);
+
   return (
     <>
-      <LoginModalGate/>
+      <LoginModalGate />
       <div className={styles.search_background}>
         <div className={styles.search_wrapper}>
           <figure></figure>
@@ -30,7 +35,7 @@ const SideAndSearchBar = () => {
                   placeholder="Search for books"
                 />
                 <div className={styles.search_icon}>
-                  <FaMagnifyingGlass className={styles.react_icon} />
+                  <RxMagnifyingGlass className={styles.react_icon} />
                 </div>
               </div>
             </div>
@@ -49,7 +54,7 @@ const SideAndSearchBar = () => {
                 className={`${styles.sideBar_link__line} ${styles.active__tab}`}
               ></div>
               <div className={styles.sideBar_icon_wrapper}>
-                <FaHouse className={styles.react_icon__sidebar} />
+                <AiOutlineHome className={styles.react_icon__sidebar} />
               </div>
               <div className={styles.sideBar_link__text}>For you</div>
             </a>
@@ -59,7 +64,9 @@ const SideAndSearchBar = () => {
               <div className={styles.sideBar_icon_wrapper}>
                 <FaRegBookmark className={styles.react_icon__sidebar} />
               </div>
-              <div className={styles.sideBar_link__text}>My Library</div>
+              <Link href={"/my-library"}>
+                <div className={styles.sideBar_link__text}>My Library</div>
+              </Link>
             </a>
 
             <div
@@ -67,49 +74,60 @@ const SideAndSearchBar = () => {
             >
               <div className={styles.sideBar_link__line}></div>
               <div className={styles.sideBar_icon_wrapper}>
-                <FaPen className={styles.react_icon__sidebar} />
+                <RiBallPenLine className={styles.react_icon__sidebar} />
               </div>
-              <div className={styles.sideBar_link__text}>HighLights</div>
+              <div className={styles.sideBar_link__textNA}>HighLights</div>
             </div>
             <div
               className={`${styles.sideBar_link__wrapper} ${styles.sideBar_link__notAllowed}`}
             >
               <div className={styles.sideBar_link__line}></div>
               <div className={styles.sideBar_icon_wrapper}>
-                <FaMagnifyingGlass className={styles.react_icon__sidebar} />
+                <RxMagnifyingGlass className={styles.react_icon__sidebar} />
               </div>
-              <div className={styles.sideBar_link__text}>Search</div>
+              <div className={styles.sideBar_link__textNA}>Search</div>
             </div>
           </div>
-          <div className={styles.sideBer__bottom}>
+          <div className={styles.sideBar__bottom}>
             <a className={styles.sideBar_link__wrapper} href="/settings">
               <div className={styles.sideBar_link__line}></div>
               <div className={styles.sideBar_icon_wrapper}>
-                <FaGear className={styles.react_icon__sidebar} />
+                <GoGear className={styles.react_icon__sidebar} />
               </div>
               <div className={styles.sideBar_link__text}>Settings</div>
             </a>
 
-            <div className={`${styles.sideBar_link__wrapper} ${styles.sideBar_link__notAllowed}`}>
+            <div
+              className={`${styles.sideBar_link__wrapper} ${styles.sideBar_link__notAllowed}`}
+            >
               <div className={styles.sideBar_link__line}></div>
               <div className={styles.sideBar_icon_wrapper}>
-                <FaRegCircleQuestion className={styles.react_icon__sidebar}/>
+                <FaRegCircleQuestion className={styles.react_icon__sidebar} />
               </div>
               <div className={styles.sideBar_link__textNA}>Help & Support</div>
             </div>
 
-            <a className={`${styles.sideBar_link__wrapper}`}  >
+            <a className={`${styles.sideBar_link__wrapper}`}>
               <div className={styles.sideBar_link__line}></div>
               <div className={styles.sideBar_icon_wrapper}>
-                <FaArrowRightFromBracket className={styles.react_icon__sidebar} />
+                <FaArrowRightFromBracket
+                  className={styles.react_icon__sidebar}
+                />
               </div>
-              <LoginTrigger className={styles.sideBar_link__text}>Login</LoginTrigger>
+
+              {user ? (
+                <Logout className={styles.sideBar_link__text} />
+              ) : (
+                <LoginTrigger className={styles.sideBar_link__text}>
+                  Login
+                </LoginTrigger>
+              )}
             </a>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SideAndSearchBar
+export default SideAndSearchBar;

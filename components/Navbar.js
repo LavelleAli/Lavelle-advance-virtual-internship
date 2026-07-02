@@ -10,6 +10,7 @@ import Logout from "./loginmodal/Logout";
 function Navbar() {
   const user = useSelector((state) => state.auth.user);
 
+
   return (
     <nav className="nav">
       <div className="nav__wrapper">

@@ -7,6 +7,8 @@ import forYouStyles from "@/styles/ForYou.module.css";
 import SideAndSearchBar from "@/components/SideAndSearchbar/SideAndSearchBar";
 import { getPortalUrl, getPremiumStatus, auth } from "@/firebase/firebase";
 import Link from "next/link";
+import Image from "next/image";
+import LoginTrigger from "@/components/loginmodal/LoginTrigger";
 
 const Settings = () => {
   const user = useSelector((state) => state.auth.user);
@@ -52,24 +54,37 @@ const Settings = () => {
 
           <div className={styles.card}>
             {!user && (
-              <div className={styles.email}>Log in to manage your account</div>
+              <>
+                <div className={styles.login_wrapper}>
+                  <Image
+                    className={styles.login_img}
+                    src="/login.png"
+                    alt="Login"
+                    width={500}
+                    height={500}
+                  />
+                  <div className={styles.email}>
+                    Log in to see your account details.
+                  </div>
+                  <LoginTrigger className={styles.btn}>Login</LoginTrigger>
+                </div>
+              </>
             )}
             {user && (
               <>
-                <div className={styles.email}>
-                  {user.email || user.displayName}
-                </div>
                 {isLoadingStatus && (
                   <div className={styles.status}>Checking subscription...</div>
                 )}
+
                 <div className={styles.top_card}>Your Subscription Plan</div>
                 {!isLoadingStatus && (
                   <div
                     className={`${styles.status} ${isPremium ? styles.status__premium : styles.status__standard}`}
                   >
-                    {isPremium ? "Premium Member" : "Basic"}
+                    {isPremium ? "Premium" : "Basic"}
                   </div>
                 )}
+
                 <div className={styles.actions}>
                   {!isLoadingStatus && isPremium && (
                     <button
@@ -80,20 +95,20 @@ const Settings = () => {
                       {isRedirecting ? "Redirecting..." : "Manage Subscription"}
                     </button>
                   )}
-                  <Link href={`/choose-plan`}>
-                    <button className={styles.btn}>Upgrade To Premium</button>
-                  </Link>
+                  {!isLoadingStatus && !isPremium && (
+                    <Link href={`/choose-plan`}>
+                      <button className={styles.btn}>Upgrade To Premium</button>
+                    </Link>
+                  )}
                 </div>
+                <div className={styles.separator}></div>
+                <div className={styles.top_card}>
+                  <h1>Email</h1>
+                </div>
+                {userEmail}
               </>
             )}
           </div>
-
-          <div className={styles.separator}></div>
-
-          <div className={styles.top_card}>
-            <h1>Email</h1>
-          </div>
-          {userEmail}
         </div>
       </div>
     </>

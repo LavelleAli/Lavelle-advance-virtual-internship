@@ -1,16 +1,37 @@
+"use client";
 import "../styles/summarist.css";
 import Navbar from "@/components/Navbar";
-import { FaFileLines, FaLightbulb, FaHeadphones, FaStar, FaStarHalfStroke, FaCrown, FaLeaf } from "react-icons/fa6";
+import {
+  FaFileLines,
+  FaLightbulb,
+  FaHeadphones,
+  FaStar,
+  FaStarHalfStroke,
+  FaCrown,
+  FaLeaf,
+} from "react-icons/fa6";
 import LoginTrigger from "@/components/loginmodal/LoginTrigger";
 import LoginModalGate from "@/components/loginmodal/LoginModalGate";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import Logout from "@/components/loginmodal/Logout";
 
 export default function Home() {
+  const user = useSelector((state) => state.auth.user);
+
+  function handleLoginClick() {
+    return user ? (
+      <Logout className="btn home__cta--btn" />
+    ) : (
+      <LoginTrigger className="btn home__cta--btn">Login</LoginTrigger>
+    );
+  }
+
   return (
     <>
       <Navbar />
       <LoginModalGate />
-      
+
       <section id="landing">
         <div className="container">
           <div className="row">
@@ -27,10 +48,15 @@ export default function Home() {
                   <br className="remove--tablet" />
                   and even people who don&apos;t like to read.
                 </div>
-                <LoginTrigger className="btn home__cta--btn">Login</LoginTrigger>
+                {handleLoginClick()}
               </div>
               <figure className="landing__image--mask">
-                <Image src="/landing.png" alt="landing" width={200} height={200} />
+                <Image
+                  src="/landing.png"
+                  alt="landing"
+                  width={200}
+                  height={200}
+                />
               </figure>
             </div>
           </div>
@@ -40,7 +66,9 @@ export default function Home() {
       <section id="features">
         <div className="container">
           <div className="row">
-            <div className="section__title">Understand books in few minutes</div>
+            <div className="section__title">
+              Understand books in few minutes
+            </div>
             <div className="features__wrapper">
               <div className="features">
                 <div className="features__icon">
@@ -72,18 +100,27 @@ export default function Home() {
             </div>
             <div className="statistics__wrapper">
               <div className="statistics__content--header">
-                <div className="statistics__heading">Enhance your knowledge</div>
-                <div className="statistics__heading">Achieve greater success</div>
+                <div className="statistics__heading">
+                  Enhance your knowledge
+                </div>
+                <div className="statistics__heading">
+                  Achieve greater success
+                </div>
                 <div className="statistics__heading">Improve your health</div>
-                <div className="statistics__heading">Develop better parenting skills</div>
+                <div className="statistics__heading">
+                  Develop better parenting skills
+                </div>
                 <div className="statistics__heading">Increase happiness</div>
-                <div className="statistics__heading">Be the best version of yourself!</div>
+                <div className="statistics__heading">
+                  Be the best version of yourself!
+                </div>
               </div>
               <div className="statistics__content--details">
                 <div className="statistics__data">
                   <div className="statistics__data--number">93%</div>
                   <div className="statistics__data--title">
-                    of Summarist members <b>significantly increase</b> reading frequency.
+                    of Summarist members <b>significantly increase</b> reading
+                    frequency.
                   </div>
                 </div>
                 <div className="statistics__data">
@@ -127,10 +164,16 @@ export default function Home() {
               <div className="statistics__content--header statistics__content--header-second">
                 <div className="statistics__heading">Expand your learning</div>
                 <div className="statistics__heading">Accomplish your goals</div>
-                <div className="statistics__heading">Strengthen your vitality</div>
-                <div className="statistics__heading">Become a better caregiver</div>
+                <div className="statistics__heading">
+                  Strengthen your vitality
+                </div>
+                <div className="statistics__heading">
+                  Become a better caregiver
+                </div>
                 <div className="statistics__heading">Improve your mood</div>
-                <div className="statistics__heading">Maximize your abilities</div>
+                <div className="statistics__heading">
+                  Maximize your abilities
+                </div>
               </div>
             </div>
           </div>
@@ -150,9 +193,9 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="review__body">
-                  This app has been a <b>game-changer</b> for me! It&apos;s saved me so
-                  much time and effort in reading and comprehending books. Highly
-                  recommend it to all book lovers.
+                  This app has been a <b>game-changer</b> for me! It&apos;s
+                  saved me so much time and effort in reading and comprehending
+                  books. Highly recommend it to all book lovers.
                 </div>
               </div>
               <div className="review">
@@ -164,8 +207,9 @@ export default function Home() {
                 </div>
                 <div className="review__body">
                   I love this app! It provides{" "}
-                  <b>concise and accurate summaries</b> of books in a way that is
-                  easy to understand. It&apos;s also very user-friendly and intuitive.
+                  <b>concise and accurate summaries</b> of books in a way that
+                  is easy to understand. It&apos;s also very user-friendly and
+                  intuitive.
                 </div>
               </div>
               <div className="review">
@@ -191,14 +235,15 @@ export default function Home() {
                 </div>
                 <div className="review__body">
                   If you&apos;re a busy person who{" "}
-                  <b>loves reading but doesn&apos;t have the time</b> to read every
-                  book in full, this app is for you! The summaries are thorough
-                  and provide a great overview of the book&apos;s content.
+                  <b>loves reading but doesn&apos;t have the time</b> to read
+                  every book in full, this app is for you! The summaries are
+                  thorough and provide a great overview of the book&apos;s
+                  content.
                 </div>
               </div>
             </div>
             <div className="reviews__btn--wrapper">
-              <LoginTrigger className="btn home__cta--btn">Login</LoginTrigger>
+              {handleLoginClick()}
             </div>
           </div>
         </div>
@@ -207,14 +252,18 @@ export default function Home() {
       <section id="numbers">
         <div className="container">
           <div className="row">
-            <div className="section__title">Start growing with Summarist now</div>
+            <div className="section__title">
+              Start growing with Summarist now
+            </div>
             <div className="numbers__wrapper">
               <div className="numbers">
                 <div className="numbers__icon">
                   <FaCrown />
                 </div>
                 <div className="numbers__title">3 Million</div>
-                <div className="numbers__sub--title">Downloads on all platforms</div>
+                <div className="numbers__sub--title">
+                  Downloads on all platforms
+                </div>
               </div>
               <div className="numbers">
                 <div className="numbers__icon numbers__star--icon">
@@ -239,7 +288,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       <section id="footer">
         <div className="container">
           <div className="row">

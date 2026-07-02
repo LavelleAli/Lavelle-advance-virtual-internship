@@ -145,6 +145,7 @@
 .react_icon__sidebar {
   width: 24px;
   height: 24px;
+  cursor: not-allowed;
 }
 
 

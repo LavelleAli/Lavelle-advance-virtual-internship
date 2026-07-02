@@ -1,0 +1,48 @@
+.row {
+    max-width:  1070px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.container {
+    width: 100%;
+    padding: 40px 0;
+}
+
+.for_you__title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #032b41;
+    margin-bottom: 16px;
+}
+
+.for_you__subTitle {
+    font-weight: 300;
+    color: #394547;
+    margin-bottom: 16px;
+}
+
+.finished_book__blockWrapper {
+    background-color: #f1f6f4;
+    max-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 32px;
+    border-radius: 12px;
+    margin: 0 auto 56px;
+    text-align: center;
+}
+
+.finished_books__title {
+    color: #042330;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.finished_book__subTitle {
+    color: #394547;
+}
+
