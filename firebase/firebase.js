@@ -163,7 +163,7 @@ const getPortalUrl = async () => {
 
 const getPremiumStatus = async () => {
   const userId = auth.currentUser?.uid;
-  if (!userId) throw new Error("User not logged in");
+  if (!userId) return false;
 
   const subscriptionsRef = collection(db, "customers", userId, "subscriptions");
   const q = query(subscriptionsRef, where("status", "in", ["trialing", "active"]));

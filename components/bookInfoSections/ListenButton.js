@@ -12,12 +12,13 @@ const ListenButton = ({ id, className, children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!user) return;
     const checkPremiumStatus = async () => {
       const status = await getPremiumStatus();
       setPremiumUser(status);
     };
     checkPremiumStatus();
-  }, []);
+  }, [user]);
 
   return (
     <button
@@ -26,7 +27,7 @@ const ListenButton = ({ id, className, children }) => {
         if (!user) {
           return dispatch(openModal());
         }
-        premiumUser === false
+        premiumUser !== true
           ? router.push(`/choose-plan`)
           : router.push(`/player/${id}`);
       }}

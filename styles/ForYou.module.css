@@ -72,6 +72,76 @@
   color: #042330;
 }
 
+.search_books__wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 440px;
+  width: 100%;
+  max-height: 640px;
+  margin-left: auto;
+  overflow-y: auto;
+  padding: 16px;
+  position: absolute;
+  top: 104px;
+  right: 24px;
+  background-color: #fff;
+  border: 1px solid #e1e7ea;
+  box-shadow: 00 6px rgba(0,0,0,.14, green, blue, alpha);
+}
+
+.search_book__link {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  gap: 24px;
+  height: 120px;
+}
+
+.search_book__link:last-child {
+  border-bottom: none;
+}
+
+.book_img__wrapper {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+}
+
+.book_img {
+  width: 100%;
+  height: 100%;
+}
+
+.search_book__title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #032b41;
+  margin-bottom: 8px;
+}
+
+.search_book__author {
+  font-size: 14px;
+  font-weight: 300;
+  color: #032b41;
+  margin-bottom: 8px;
+}
+
+.recommended_book__details {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #6b757b;
+}
+
+.recommended_book__detailsIcon {
+  display: flex;
+  width: 16px;
+  height: 16px;
+}
+
+
 /* --------------------------- */
 /* Side Bar */
 /* --------------------------- */

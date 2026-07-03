@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import { useState, useEffect } from "react";
 import LoginTrigger from "@/components/loginmodal/LoginTrigger";
 import LoginModalGate from "@/components/loginmodal/LoginModalGate";
 import Logout from "@/components/loginmodal/Logout";
@@ -14,11 +14,102 @@ import { GoGear } from "react-icons/go";
 import { RiBallPenLine } from "react-icons/ri";
 import { AiOutlineHome } from "react-icons/ai";
 import { RxMagnifyingGlass } from "react-icons/rx";
+import { CiClock2 } from "react-icons/ci";
 import Image from "next/image";
 import Link from "next/link";
+import { openModal } from "@/redux/slices/loginModal";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { getPremiumStatus } from "@/firebase/firebase";
 
 const SideAndSearchBar = () => {
   const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [premiumUser, setPremiumUser] = useState(null);
+
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    if (!user) return;
+    const checkPremiumStatus = async () => {
+      const status = await getPremiumStatus();
+      setPremiumUser(status);
+    };
+    checkPremiumStatus();
+  }, [user]);
+
+  async function simpleSearch(e) {
+    const searchTerm = e.target.value.trim();
+    setSearch(searchTerm);
+    if (!searchTerm) {
+      setSearchResults([]);
+      return;
+    }
+    try {
+      const res = await fetch(
+        `https://us-central1-summaristt.cloudfunctions.net/getBooksByAuthorOrTitle?search=${encodeURIComponent(searchTerm)}`,
+      );
+      const data = await res.json();
+      setSearchResults(data);
+      console.log(data);
+    } catch (error) {
+      console.log("Error fetching Data:", error);
+    }
+  }
+
+  function searchBarRenderHelper() {
+    return (
+      <>
+        {searchResults.map((book) => {
+          return (
+            <div
+              className={styles.search_books__wrapper}
+              key={book.id}
+            >
+              <div
+                className={styles.search_book__link}
+                onClick={() => {
+                  if (!user) return dispatch(openModal());
+                  book?.subscriptionRequired && premiumUser !== true
+                    ? router.push("/choose-plan")
+                    : router.push(`/book/${book.id}`);
+                }}
+              >
+                <audio src={book.audioLink}></audio>
+                <figure className={styles.book_img__wrapper}>
+                  <Image
+                    className={styles.book_img}
+                    src={book.imageLink}
+                    alt="image not available"
+                    width={300}
+                    height={300}
+                  />
+                </figure>
+                <div>
+                  <div className={styles.search_book__title}>{book.title}</div>
+                  <div className={styles.search_book__author}>
+                    {book.author}
+                  </div>
+                  <div className={styles.search_book__duration}>
+                    <div className={styles.recommended_book__details}>
+                      <div className={styles.recommended_book__detailsIcon}>
+                        <CiClock2 />
+                      </div>
+                      <div className={styles.recommended_book__detailsText}>
+                        03:24
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </>
+    );
+  }
 
   return (
     <>
@@ -33,6 +124,14 @@ const SideAndSearchBar = () => {
                   className={styles.search_input}
                   type="text"
                   placeholder="Search for books"
+                  onChange={(e) => {
+                    simpleSearch(e)
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      simpleSearch(e);
+                    }
+                  }}
                 />
                 <div className={styles.search_icon}>
                   <RxMagnifyingGlass className={styles.react_icon} />
@@ -41,6 +140,7 @@ const SideAndSearchBar = () => {
             </div>
             <div className={styles.sideBar__toggleBtn}></div>
           </div>
+          {searchResults && searchBarRenderHelper()}
         </div>
       </div>
       <div className={styles.sideBar}>
@@ -59,7 +159,7 @@ const SideAndSearchBar = () => {
               <div className={styles.sideBar_link__text}>For you</div>
             </a>
 
-            <a className={styles.sideBar_link__wrapper} href="/for-you">
+            <div className={styles.sideBar_link__wrapper}>
               <div className={styles.sideBar_link__line}></div>
               <div className={styles.sideBar_icon_wrapper}>
                 <FaRegBookmark className={styles.react_icon__sidebar} />
@@ -67,7 +167,7 @@ const SideAndSearchBar = () => {
               <Link href={"/my-library"}>
                 <div className={styles.sideBar_link__text}>My Library</div>
               </Link>
-            </a>
+            </div>
 
             <div
               className={`${styles.sideBar_link__wrapper} ${styles.sideBar_link__notAllowed}`}

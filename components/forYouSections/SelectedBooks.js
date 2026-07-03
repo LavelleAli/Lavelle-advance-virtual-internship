@@ -1,14 +1,44 @@
+"use client";
 import styles from "@/styles/ForYou.module.css";
 import Image from "next/image";
 import { FaCirclePlay } from "react-icons/fa6";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { openModal } from "@/redux/slices/loginModal";
+import { getPremiumStatus } from "@/firebase/firebase";
 
 const SelectedBooks = ({ book }) => {
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [premiumUser, setPremiumUser] = useState(null);
+
+  useEffect(() => {
+    if (!user) return;
+    const checkPremiumStatus = async () => {
+      const status = await getPremiumStatus();
+      setPremiumUser(status);
+    };
+    checkPremiumStatus();
+  }, [user]);
+
   function renderHelper(booksInfo) {
     return (
       <>
         <div className={styles.for_you__title}>Selected just for you</div>
         <audio src={booksInfo?.audioLink}>Audio Link</audio>
-        <a className={styles.selected__book} href={`/book/${booksInfo?.id}`}>
+        <a
+          className={styles.selected__book}
+          href={`/book/${booksInfo?.id}`}
+          onClick={(e) => {
+            e.preventDefault();
+            if (!user) return dispatch(openModal());
+            booksInfo?.subscriptionRequired && premiumUser !== true
+              ? router.push("/choose-plan")
+              : router.push(`/book/${booksInfo.id}`);
+          }}
+        >
           <div className={styles.selected__book__subTitle}>
             <p className={styles.sub_text}>{booksInfo?.subTitle}</p>
           </div>

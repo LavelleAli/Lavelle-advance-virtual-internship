@@ -1,14 +1,41 @@
+"use client";
 import styles from "@/styles/ForYou.module.css";
 import Image from "next/image";
 import { FaRegClock, FaRegStar } from "react-icons/fa6";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { openModal } from "@/redux/slices/loginModal";
+import { getPremiumStatus } from "@/firebase/firebase";
 
 const RecommendedBooks = ({ recBooks }) => {
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [premiumUser, setPremiumUser] = useState(null);
+
+  useEffect(() => {
+    if (!user) return;
+    const checkPremiumStatus = async () => {
+      const status = await getPremiumStatus();
+      setPremiumUser(status);
+    };
+    checkPremiumStatus();
+  }, [user]);
+
   function renderPremium(book) {
     return (
       <a
         key={book.id}
         href={`/book/${book?.id}`}
         className={styles.for_you__recommendedBooks_link}
+        onClick={(e) => {
+          e.preventDefault();
+          if (!user) return dispatch(openModal());
+          book?.subscriptionRequired && premiumUser !== true
+            ? router.push("/choose-plan")
+            : router.push(`/book/${book.id}`);
+        }}
       >
         <div
           className={`${styles.book_pill} ${

@@ -1,20 +1,51 @@
+"use client";
 import React from "react";
 import styles from "@/styles/ForYou.module.css";
 import Image from "next/image";
 import { FaRegClock, FaRegStar } from "react-icons/fa6";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { openModal } from "@/redux/slices/loginModal";
+import { getPremiumStatus } from "@/firebase/firebase";
 
 const SuggestedBooks = ({ suggestedBooks }) => {
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [premiumUser, setPremiumUser] = useState(null);
+
+  useEffect(() => {
+    if (!user) return;
+    const checkPremiumStatus = async () => {
+      const status = await getPremiumStatus();
+      setPremiumUser(status);
+    };
+    checkPremiumStatus();
+  }, [user]);
+
   function renderHelper(item) {
     return (
       <a
         href={`/book/${item?.id}`}
         className={styles.for_you__recommendedBooks_link}
         key={item?.id}
+        onClick={(e) => {
+          e.preventDefault();
+          if (!user) return dispatch(openModal());
+          item?.subscriptionRequired && premiumUser !== true
+            ? router.push("/choose-plan")
+            : router.push(`/book/${item.id}`);
+        }}
       >
         <div
-          className={`${styles.book_pill} ${styles.book_pill__subscriptionRequired}`}
+          className={`${styles.book_pill} ${
+            item?.subscriptionRequired === true
+              ? styles.book_pill__subscriptionRequired
+              : ""
+          }`}
         >
-          Premium
+          {item?.subscriptionRequired === true ? "Premium" : null}
         </div>
         <audio src={item?.audioLink}>Audio Link</audio>
         <figure className={styles.book_image__wrapper}>
