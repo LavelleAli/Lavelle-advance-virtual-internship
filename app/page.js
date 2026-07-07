@@ -15,11 +15,18 @@ import LoginModalGate from "@/components/loginmodal/LoginModalGate";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import Logout from "@/components/loginmodal/Logout";
+import Skeleton from "@/components/skeletons/Skeleton";
+import { useHasMounted } from "@/hooks/useHasMounted";
 
 export default function Home() {
   const user = useSelector((state) => state.auth.user);
+  const initializing = useSelector((state) => state.auth.initializing);
+  const hasMounted = useHasMounted();
 
   function handleLoginClick() {
+    if (!hasMounted || initializing) {
+      return <Skeleton height="40px" width="180px" borderRadius="4px" />;
+    }
     return user ? (
       <Logout className="btn home__cta--btn" />
     ) : (

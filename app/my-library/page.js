@@ -1,7 +1,17 @@
+'use client'
+import AddBookToCollection from "@/components/bookInfoSections/AddBookToCollection";
 import SearchAndSiderbar from "@/components/SideAndSearchbar/SideAndSearchBar";
 import styles from "@/styles/MyLibrary.module.css";
+import axios from "axios";
+import { useState } from "react";
 
 const MyLibrary = () => {
+
+
+
+
+
+
   return (
     <>
       <SearchAndSiderbar />
@@ -13,12 +23,19 @@ const MyLibrary = () => {
             <div className={styles.finished_books__title}>
               Save your favorite books
             </div>
-            <div className={styles.finished_book__subTitle}>When you save a book it will appear here.</div>
+            <div className={styles.finished_book__subTitle}>
+              When you save a book it will appear here.
+              
+            </div>
           </div>
-          <div className={styles.for_you__title}>Finished</div>
+          <div className={styles.for_you__title}>
+            Finished
+          </div>
           <div className={styles.for_you__subTitle}>0 items</div>
           <div className={styles.finished_book__blockWrapper}>
-            <div className={styles.finished_books__title}>Done and dusted!</div>
+            <div className={styles.finished_books__title}>
+              Done and dusted!
+            </div>
             <div className={styles.finished_books__subTitle}>
               When you finish a book you can find it here later.
             </div>

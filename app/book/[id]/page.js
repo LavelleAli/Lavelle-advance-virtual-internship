@@ -5,6 +5,7 @@ import BookBasicInfo from "@/components/bookInfoSections/BookBasicInfo";
 import BookAbout from "@/components/bookInfoSections/BookAbout";
 import BookImage from "@/components/bookInfoSections/BookImage";
 import SideAndSearchBar from "@/components/SideAndSearchbar/SideAndSearchBar";
+import AddBookToCollection from "@/components/bookInfoSections/AddBookToCollection";
 
 
 const bookInfoPage = async ({ params }) => {
@@ -23,6 +24,7 @@ const bookInfoPage = async ({ params }) => {
           <div className={bookStyles.innerBookWrapper}>
             <div className={bookStyles.innerBook}>
               <BookBasicInfo book={book} />
+              <AddBookToCollection book={book}/>
               <BookAbout book={book} />
             </div>
             <BookImage book={book} />

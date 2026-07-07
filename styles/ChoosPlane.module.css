@@ -38,11 +38,11 @@
     max-width: 1070px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 16px;
 }
 
 .container {
-    padding: 40px;
+    padding: 24px 16px;
     width: 100%;
 }
 
@@ -53,8 +53,8 @@
     position: relative;
     text-align: center;
     width: 100%;
-    padding-top: 48px;
-    margin-bottom: 24px;
+    padding-top: 32px;
+    margin-bottom: 16px;
 }
 .plan_header__wrapper::before {
     content: "";
@@ -65,26 +65,26 @@
     width: 100%;
     height: 100%;
     background-color: #032b41;
-    border-bottom-right-radius: 16rem ;
-    border-bottom-left-radius: 16rem;
+    border-bottom-right-radius: 3rem;
+    border-bottom-left-radius: 3rem;
 }
 
 .plan_header {
     max-width: 1000px;
     margin: 0 auto;
     color: #fff;
-    padding: 0 24px;
+    padding: 0 16px;
 }
 
 .plan_title {
-    font-size: 48px;
+    font-size: 26px;
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
 }
 
 .plan_subTitle {
-    font-size: 20px;
-    margin-bottom: 32px;
+    font-size: 16px;
+    margin-bottom: 20px;
 }
 
 .plan_img__mask {
@@ -108,12 +108,12 @@
 
 .plan_features__wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
     gap: 24px;
     max-width: 800px;
-    margin: 0 auto 56px;
+    margin: 0 auto 32px;
 }
 
 .plan_feature__icon {
@@ -138,17 +138,17 @@
 /* ==================== */
 
 .section_title {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 700;
     color: #032b41;
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .plan_card {
     display: flex;
-    gap: 24px;
-    padding: 24px;
+    gap: 16px;
+    padding: 16px;
     background-color: #f1f6f4;
     border-radius: 4px;
     border: 4px solid #bac8ce;
@@ -238,7 +238,8 @@
 }
 
 .btn {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     background-color: #2be080;
     color: #032b41;
     height: 40px;
@@ -273,7 +274,7 @@
 
 .accordion_title {
     font-weight: 500;
-    font-size: 24px;
+    font-size: 16px;
     position: relative;
     margin-bottom: 0;
     color: #032b41;
@@ -319,9 +320,11 @@
 .footer_top__wrapper {
     position: relative;
     display: flex;
+    flex-direction: column;
+    gap: 24px;
     justify-content: space-between;
     font-size: 14px;
-    margin: 32px auto 64px;
+    margin: 24px auto 40px;
 }
 
 .footer_block {
@@ -356,4 +359,118 @@
 .footer_copyright {
     color: #032b41;
     font-weight: 500;
+}
+
+/* --------------------------------- */
+/* Responsive breakpoints            */
+/* Mobile-first: base styles above   */
+/* are phone (<768px). Overrides     */
+/* below scale up for tablet/laptop, */
+/* restoring the original desktop    */
+/* values at the laptop tier.        */
+/* --------------------------------- */
+
+@media (min-width: 768px) {
+    .row {
+        padding: 0 20px;
+    }
+
+    .container {
+        padding: 32px 20px;
+    }
+
+    .plan_header__wrapper {
+        padding-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    .plan_header__wrapper::before {
+        border-bottom-right-radius: 8rem;
+        border-bottom-left-radius: 8rem;
+    }
+
+    .plan_header {
+        padding: 0 24px;
+    }
+
+    .plan_title {
+        font-size: 36px;
+        margin-bottom: 32px;
+    }
+
+    .plan_subTitle {
+        font-size: 18px;
+        margin-bottom: 24px;
+    }
+
+    .plan_features__wrapper {
+        grid-template-columns: repeat(3, 1fr);
+        margin: 0 auto 40px;
+    }
+
+    .plan_card {
+        padding: 24px;
+        gap: 24px;
+    }
+
+    .section_title {
+        font-size: 28px;
+        margin-bottom: 28px;
+    }
+
+    .accordion_title {
+        font-size: 20px;
+    }
+
+    .footer_top__wrapper {
+        flex-direction: row;
+        margin: 28px auto 48px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .row {
+        padding: 0 24px;
+    }
+
+    .container {
+        padding: 40px;
+    }
+
+    .plan_header__wrapper {
+        padding-top: 48px;
+        margin-bottom: 24px;
+    }
+
+    .plan_header__wrapper::before {
+        border-bottom-right-radius: 16rem;
+        border-bottom-left-radius: 16rem;
+    }
+
+    .plan_title {
+        font-size: 48px;
+        margin-bottom: 40px;
+    }
+
+    .plan_subTitle {
+        font-size: 20px;
+        margin-bottom: 32px;
+    }
+
+    .plan_features__wrapper {
+        margin: 0 auto 56px;
+    }
+
+    .section_title {
+        font-size: 32px;
+        margin-bottom: 32px;
+    }
+
+    .accordion_title {
+        font-size: 24px;
+    }
+
+    .footer_top__wrapper {
+        margin: 32px auto 64px;
+    }
 }

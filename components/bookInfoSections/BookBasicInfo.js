@@ -6,10 +6,10 @@ import {
   FaMicrophone,
   FaRegLightbulb,
   FaBookOpen,
-  FaRegBookmark,
 } from "react-icons/fa6";
 import ReadButton from "./ReadButton";
 import ListenButton from "./ListenButton";
+import AddBookToCollection from "./AddBookToCollection";
 
 const BookBasicInfo = ({ book }) => {
   
@@ -73,12 +73,6 @@ const BookBasicInfo = ({ book }) => {
           </ListenButton>
         </div>
         
-        <div className={styles.inner_book__bookmark}>
-          <div className={styles.inner_book__readIcon}>
-            <FaRegBookmark />
-          </div>
-          <div className={styles.inner_book__readText}>Add title to my Library</div>
-        </div>
       </>
     );
   }

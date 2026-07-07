@@ -88,7 +88,7 @@ const Settings = () => {
                 <div className={styles.actions}>
                   {!isLoadingStatus && isPremium && (
                     <button
-                      className={styles.btn}
+                      className={`${styles.btn} ${styles.btn__action}`}
                       onClick={handleManageSubscription}
                       disabled={isRedirecting}
                     >
@@ -97,7 +97,7 @@ const Settings = () => {
                   )}
                   {!isLoadingStatus && !isPremium && (
                     <Link href={`/choose-plan`}>
-                      <button className={styles.btn}>Upgrade To Premium</button>
+                      <button className={`${styles.btn} ${styles.btn__action}`}>Upgrade To Premium</button>
                     </Link>
                   )}
                 </div>

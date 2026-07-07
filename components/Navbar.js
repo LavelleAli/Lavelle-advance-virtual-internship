@@ -6,10 +6,13 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import LoginTrigger from "./loginmodal/LoginTrigger";
 import Logout from "./loginmodal/Logout";
+import Skeleton from "./skeletons/Skeleton";
+import { useHasMounted } from "@/hooks/useHasMounted";
 
 function Navbar() {
   const user = useSelector((state) => state.auth.user);
-
+  const initializing = useSelector((state) => state.auth.initializing);
+  const hasMounted = useHasMounted();
 
   return (
     <nav className="nav">
@@ -24,7 +27,11 @@ function Navbar() {
           />
         </figure>
         <ul className="nav__list--wrapper">
-          {user ? (
+          {!hasMounted || initializing ? (
+            <li>
+              <Skeleton height="16px" width="60px" />
+            </li>
+          ) : user ? (
             <Logout
               as="li"
               className={`${styles.nav_list} ${styles.nav_list__login}`}

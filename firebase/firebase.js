@@ -117,8 +117,7 @@ const resetPassword = async (email) => {
   }
 }
 
-// Requires the "Run Subscriptions with Stripe" Firebase Extension to be
-// installed on this project, configured with matching Stripe price IDs.
+
 const getCheckoutUrl = async (priceId) => {
   const userId = auth.currentUser?.uid;
   if (!userId) throw new Error("User is not authenticated");
@@ -161,16 +160,17 @@ const getPortalUrl = async () => {
   return data.url;
 };
 
+
 const getPremiumStatus = async () => {
   const userId = auth.currentUser?.uid;
-  if (!userId) return false;
+  if (!userId) throw new Error("User not logged in");
 
   const subscriptionsRef = collection(db, "customers", userId, "subscriptions");
-  const q = query(subscriptionsRef, where("status", "in", ["trialing", "active"]));
+  const findQ = query(subscriptionsRef, where("status", "in", ["trialing", "active"]));
 
   return new Promise((resolve, reject) => {
     const unsubscribe = onSnapshot(
-      q,
+      findQ,
       (snapshot) => {
         unsubscribe();
         resolve(snapshot.docs.length > 0);
@@ -179,6 +179,7 @@ const getPremiumStatus = async () => {
     );
   });
 };
+
 
 const logout = () => {
   signOut(auth);

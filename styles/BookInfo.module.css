@@ -2,17 +2,18 @@
     max-width: 1070px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 16px;
 }
 
 .container {
-    padding: 40px;
+    padding: 24px 0;
     width: 100%;
 }
 
 .innerBookWrapper {
     display: flex;
-    gap: 16px;
+    flex-direction: column-reverse;
+    gap: 24px;
 }
 
 /* ============================= */
@@ -40,6 +41,8 @@
 }
 
 .inner_book__wrapper {
+
+    align-items: center;
     border-top: 1px solid #e1e7ea;
     border-bottom: 1px solid #e1e7ea;
     padding: 16px 0;
@@ -76,6 +79,7 @@
 
 .inner_book__readBtnWrapper {
     display: flex;
+    flex-wrap: wrap;
     gap: 16px;
     margin-bottom: 24px;
 }
@@ -166,7 +170,7 @@
 .inner_book__authorDescription {
     color: #032b41;
     line-height: 1.5;
-    
+
 }
 
 .inner_book__imgWrapper {
@@ -186,4 +190,26 @@
     display: block;
     width: 100%;
     height: 100%;
+}
+
+/* --------------------------------- */
+/* Responsive breakpoints            */
+/* Mobile-first: base styles above   */
+/* are phone (<768px). Overrides     */
+/* below scale up for tablet/laptop. */
+/* --------------------------------- */
+
+@media (min-width: 768px) {
+    .row {
+        padding: 0 24px;
+    }
+
+    .container {
+        padding: 40px;
+    }
+
+    .innerBookWrapper {
+        flex-direction: row;
+        gap: 16px;
+    }
 }

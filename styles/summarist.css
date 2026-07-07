@@ -40,7 +40,7 @@ button:disabled {
 .row {
   max-width: 1070px;
   width: 100%;
-  margin: 0 27%;
+  margin: 0 auto;
   padding: 0 24px;
 }
 
@@ -445,6 +445,30 @@ button:disabled {
   font-weight: 500;
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+  .row {
+    padding: 0 20px;
+  }
+
+  .landing__content__title {
+    font-size: 32px;
+  }
+
+  .landing__image--mask img {
+    max-width: 320px;
+  }
+
+  .statistics__wrapper {
+    gap: 40px;
+  }
+
+  .section__title {
+    font-size: 28px;
+  }
+}
+
+/* Phone */
 @media (max-width: 768px) {
   .landing__content {
     display: flex;

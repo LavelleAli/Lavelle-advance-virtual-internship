@@ -13,7 +13,7 @@ import {
 import { GoGear } from "react-icons/go";
 import { RiBallPenLine } from "react-icons/ri";
 import { AiOutlineHome } from "react-icons/ai";
-import { RxMagnifyingGlass } from "react-icons/rx";
+import { RxMagnifyingGlass, RxHamburgerMenu } from "react-icons/rx";
 import { CiClock2 } from "react-icons/ci";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,15 +21,20 @@ import { openModal } from "@/redux/slices/loginModal";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { getPremiumStatus } from "@/firebase/firebase";
+import { useHasMounted } from "@/hooks/useHasMounted";
+import Skeleton from "@/components/skeletons/Skeleton";
 
 const SideAndSearchBar = () => {
   const user = useSelector((state) => state.auth.user);
+  const initializing = useSelector((state) => state.auth.initializing);
+  const hasMounted = useHasMounted();
   const dispatch = useDispatch();
   const router = useRouter();
   const [premiumUser, setPremiumUser] = useState(null);
 
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -137,19 +142,36 @@ const SideAndSearchBar = () => {
                   <RxMagnifyingGlass className={styles.react_icon} />
                 </div>
               </div>
+              <button
+                type="button"
+                className={styles.hamburger_btn}
+                onClick={() => setSidebarOpen((prev) => !prev)}
+                aria-label="Toggle navigation menu"
+              >
+                <RxHamburgerMenu className={styles.react_icon} />
+              </button>
             </div>
-            <div className={styles.sideBar__toggleBtn}></div>
           </div>
           {searchResults && searchBarRenderHelper()}
         </div>
       </div>
-      <div className={styles.sideBar}>
+      {sidebarOpen && (
+        <div
+          className={styles.sidebar_backdrop}
+          onClick={() => setSidebarOpen(false)}
+        ></div>
+      )}
+      <div className={`${styles.sideBar} ${sidebarOpen ? styles.sideBar_open : ""}`}>
         <div className={styles.sideBar_logo}>
           <Image src="/logo.png" alt="logo" width={200} height={200} />
         </div>
         <div className={styles.sideBar__wrapper}>
           <div className={styles.sideBar__top}>
-            <a className={styles.sideBar_link__wrapper} href="/for-you">
+            <a
+              className={styles.sideBar_link__wrapper}
+              href="/for-you"
+              onClick={() => setSidebarOpen(false)}
+            >
               <div
                 className={`${styles.sideBar_link__line} ${styles.active__tab}`}
               ></div>
@@ -164,7 +186,7 @@ const SideAndSearchBar = () => {
               <div className={styles.sideBar_icon_wrapper}>
                 <FaRegBookmark className={styles.react_icon__sidebar} />
               </div>
-              <Link href={"/my-library"}>
+              <Link href={"/my-library"} onClick={() => setSidebarOpen(false)}>
                 <div className={styles.sideBar_link__text}>My Library</div>
               </Link>
             </div>
@@ -189,7 +211,11 @@ const SideAndSearchBar = () => {
             </div>
           </div>
           <div className={styles.sideBar__bottom}>
-            <a className={styles.sideBar_link__wrapper} href="/settings">
+            <a
+              className={styles.sideBar_link__wrapper}
+              href="/settings"
+              onClick={() => setSidebarOpen(false)}
+            >
               <div className={styles.sideBar_link__line}></div>
               <div className={styles.sideBar_icon_wrapper}>
                 <GoGear className={styles.react_icon__sidebar} />
@@ -207,7 +233,10 @@ const SideAndSearchBar = () => {
               <div className={styles.sideBar_link__textNA}>Help & Support</div>
             </div>
 
-            <a className={`${styles.sideBar_link__wrapper}`}>
+            <a
+              className={`${styles.sideBar_link__wrapper}`}
+              onClick={() => setSidebarOpen(false)}
+            >
               <div className={styles.sideBar_link__line}></div>
               <div className={styles.sideBar_icon_wrapper}>
                 <FaArrowRightFromBracket
@@ -215,7 +244,9 @@ const SideAndSearchBar = () => {
                 />
               </div>
 
-              {user ? (
+              {!hasMounted || initializing ? (
+                <Skeleton height="16px" width="60px" />
+              ) : user ? (
                 <Logout className={styles.sideBar_link__text} />
               ) : (
                 <LoginTrigger className={styles.sideBar_link__text}>

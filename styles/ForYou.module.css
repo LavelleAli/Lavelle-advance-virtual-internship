@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: space-between;
   justify-content: end;
-  padding: 0 32px;
+  padding: 0 16px;
 }
 
 .search_content {
@@ -155,7 +155,30 @@
   background-color: #f7faf9;
   color: black;
   z-index: 1000;
-  transition: all 0.3s ease;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.sideBar_open {
+  transform: translateX(0);
+}
+
+.sidebar_backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.hamburger_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 12px;
+  cursor: pointer;
 }
 
 .sideBar_inPlayer .sideBar {
@@ -247,13 +270,13 @@
   width: 100%;
   max-width: 1070px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 16px;
 }
 
 .container {
   width: 100%;
-  padding: 40px 0;
-  margin-left: 50px;
+  padding: 24px 0;
+  margin-left: 0;
 }
 
 /* ------------------------ */
@@ -269,18 +292,19 @@
 
 .selected__book {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  width: calc((100% / 3) * 2);
+  width: 100%;
   background-color: #fbefd6;
   border-radius: 4px;
   margin-bottom: 24px;
-  gap: 24px;
+  gap: 16px;
 }
 
 .selected__book__subTitle {
   color: #032b41;
-  width: 40%;
-  margin: 20px;
+  width: auto;
+  margin: 16px 16px 0;
 }
 
 /* .sub_text {
@@ -290,16 +314,17 @@
 } */
 
 .selected__book__line {
-  margin: 30px 0;
-  width: 1px;
-  height: 110px;
+  margin: 0 16px;
+  width: auto;
+  height: 1px;
   background-color: #bac8ce;
 }
 
 .selected__book__content {
   display: flex;
   gap: 16px;
-  width: 60%;
+  width: auto;
+  padding: 0 16px 16px;
 }
 
 .book_image__wrapper {
@@ -445,6 +470,71 @@
 .recommended_book__detailsWrapper {
   display: flex;
   gap: 8px;
+}
+
+/* --------------------------------- */
+/* Responsive breakpoints            */
+/* Mobile-first: base styles above   */
+/* are phone (<768px). Overrides     */
+/* below scale up for tablet/laptop. */
+/* --------------------------------- */
+
+@media (min-width: 768px) {
+  .sideBar {
+    transform: translateX(0);
+  }
+
+  .hamburger_btn {
+    display: none;
+  }
+
+  .container {
+    margin-left: 50px;
+  }
+
+  .row {
+    padding: 0 20px;
+  }
+
+  .search_wrapper {
+    padding: 0 24px;
+  }
+
+  .selected__book {
+    flex-direction: row;
+    width: 100%;
+    gap: 24px;
+  }
+
+  .selected__book__subTitle {
+    width: 40%;
+    margin: 20px;
+  }
+
+  .selected__book__line {
+    margin: 20px 0;
+    width: 1px;
+    height: auto;
+  }
+
+  .selected__book__content {
+    width: 60%;
+    padding: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .search_wrapper {
+    padding: 0 32px;
+  }
+
+  .row {
+    padding: 0 24px;
+  }
+
+  .selected__book {
+    width: calc((100% / 3) * 2);
+  }
 }
 
 .recommended_book__details {

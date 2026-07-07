@@ -1,5 +1,5 @@
 .header {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
 }
 
@@ -22,16 +22,21 @@
 
 .login_wrapper {
   width: 100%;
-  margin: 0 300px;
+  margin: 0 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.login_img {
+  width: 160px;
+  height: 160px;
+}
+
 .email {
   text-align: center;
   color: #032b41;
-  font-size: 26px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.5px;
   margin-bottom: 14px;
@@ -82,4 +87,65 @@
   background-color: #2bd474;
 }
 
+/* Logged-in subscription actions (Manage Subscription / Upgrade To Premium) */
+/* only — the logged-out Login button keeps the original .btn width as-is. */
+.btn__action {
+  width: 100%;
+}
+
+/* --------------------------------------------------------- */
+/* Responsive breakpoints                                    */
+/* Mobile-first: base styles above are phone (<768px).        */
+/* Logged-out content (login_wrapper/login_img/email) keeps  */
+/* the same layout/technique at every size — only the size  */
+/* values scale, restoring the exact original values at the  */
+/* laptop tier (>=1024px). Logged-in content (.btn__action)  */
+/* is free to restructure/scale however fits best.           */
+/* --------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .header {
+    font-size: 24px;
+  }
+
+  .login_wrapper {
+    margin: 0 100px;
+  }
+
+  .login_img {
+    width: 280px;
+    height: 280px;
+  }
+
+  .email {
+    font-size: 22px;
+  }
+
+  .btn__action {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    font-size: 28px;
+  }
+
+  .login_wrapper {
+    margin: 0 300px;
+  }
+
+  .login_img {
+    width: 400px;
+    height: 300px;
+  }
+
+  .email {
+    font-size: 26px;
+  }
+
+  .btn__action {
+    width: 40%;
+  }
+}
 
