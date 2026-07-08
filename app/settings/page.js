@@ -9,9 +9,13 @@ import { getPortalUrl, getPremiumStatus, auth } from "@/firebase/firebase";
 import Link from "next/link";
 import Image from "next/image";
 import LoginTrigger from "@/components/loginmodal/LoginTrigger";
+import { useHasMounted } from "@/hooks/useHasMounted";
+import Skeleton from "@/components/skeletons/Skeleton";
 
 const Settings = () => {
   const user = useSelector((state) => state.auth.user);
+  const initializing = useSelector((state) => state.auth.initializing);
+  const hasMounted = useHasMounted();
   const [isPremium, setIsPremium] = useState(null);
   const [isLoadingStatus, setIsLoadingStatus] = useState(true);
   const [isRedirecting, setIsRedirecting] = useState(false);
@@ -53,59 +57,69 @@ const Settings = () => {
           <div className={styles.separator}></div>
 
           <div className={styles.card}>
-            {!user && (
+            {!hasMounted || initializing ? (
+              <div className={styles.login_wrapper}>
+                <Skeleton height="500px" width="500px" />
+                <Skeleton height="16px" width="220px" />
+                <Skeleton height="36px" width="100px" />
+              </div>
+            ) : (
               <>
-                <div className={styles.login_wrapper}>
-                  <Image
-                    className={styles.login_img}
-                    src="/login.png"
-                    alt="Login"
-                    width={500}
-                    height={500}
-                  />
-                  <div className={styles.email}>
-                    Log in to see your account details.
-                  </div>
-                  <LoginTrigger className={styles.btn}>Login</LoginTrigger>
-                </div>
-              </>
-            )}
-            {user && (
-              <>
-                {isLoadingStatus && (
-                  <div className={styles.status}>Checking subscription...</div>
+                {!user && (
+                  <>
+                    <div className={styles.login_wrapper}>
+                      <Image
+                        className={styles.login_img}
+                        src="/login.png"
+                        alt="Login"
+                        width={500}
+                        height={500}
+                      />
+                      <div className={styles.email}>
+                        Log in to see your account details.
+                      </div>
+                      <LoginTrigger className={styles.btn}>Login</LoginTrigger>
+                    </div>
+                  </>
                 )}
+                {user && (
+                  <>
+                    {isLoadingStatus && (
+                      <div className={styles.status}>Checking subscription...</div>
+                    )}
 
-                <div className={styles.top_card}>Your Subscription Plan</div>
-                {!isLoadingStatus && (
-                  <div
-                    className={`${styles.status} ${isPremium ? styles.status__premium : styles.status__standard}`}
-                  >
-                    {isPremium ? "Premium" : "Basic"}
-                  </div>
+                    <div className={styles.top_card}>Your Subscription Plan</div>
+                    {!isLoadingStatus && (
+                      <div
+                        className={`${styles.status} ${isPremium ? styles.status__premium : styles.status__standard}`}
+                      >
+                        {isPremium ? "Premium" : "Basic"}
+                      </div>
+                    )}
+
+                    <div className={styles.actions}>
+                      {!isLoadingStatus && isPremium && (
+                        <button
+                          className={`${styles.btn} ${styles.btn__action}`}
+                          onClick={handleManageSubscription}
+                          disabled={isRedirecting}
+                        >
+                          {isRedirecting ? "Redirecting..." : "Manage Subscription"}
+                        </button>
+                      )}
+                      {!isLoadingStatus && !isPremium && (
+                        <Link href={`/choose-plan`}>
+                          <button className={`${styles.btn} ${styles.btn__action}`}>Upgrade To Premium</button>
+                        </Link>
+                      )}
+                    </div>
+                    <div className={styles.separator}></div>
+                    <div className={styles.top_card}>
+                      <h1>Email</h1>
+                    </div>
+                    {userEmail}
+                  </>
                 )}
-
-                <div className={styles.actions}>
-                  {!isLoadingStatus && isPremium && (
-                    <button
-                      className={`${styles.btn} ${styles.btn__action}`}
-                      onClick={handleManageSubscription}
-                      disabled={isRedirecting}
-                    >
-                      {isRedirecting ? "Redirecting..." : "Manage Subscription"}
-                    </button>
-                  )}
-                  {!isLoadingStatus && !isPremium && (
-                    <Link href={`/choose-plan`}>
-                      <button className={`${styles.btn} ${styles.btn__action}`}>Upgrade To Premium</button>
-                    </Link>
-                  )}
-                </div>
-                <div className={styles.separator}></div>
-                <div className={styles.top_card}>
-                  <h1>Email</h1>
-                </div>
-                {userEmail}
               </>
             )}
           </div>
