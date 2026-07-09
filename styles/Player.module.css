@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .summary {
   position: relative;
   width: 100%;
