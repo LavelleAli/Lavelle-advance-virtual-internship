@@ -31,7 +31,7 @@ function Navbar() {
             <li>
               <Skeleton height="16px" width="60px" />
             </li>
-          ) : user ? (
+          ) : !user ? (
             <Logout
               as="li"
               className={`${styles.nav_list} ${styles.nav_list__login}`}
