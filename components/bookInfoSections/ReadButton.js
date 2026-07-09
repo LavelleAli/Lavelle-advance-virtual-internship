@@ -26,7 +26,7 @@ const ReadButton = ({ id, className, children }) => {
     { if (!user) {return dispatch(openModal())}
       premiumUser !== true
     ? router.push(`/choose-plan`)
-    : router.push(`/player?id=${id}`)
+    : router.push(`/player/${id}`)
 
     }}>
 

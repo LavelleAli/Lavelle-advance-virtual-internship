@@ -79,7 +79,7 @@ const SideAndSearchBar = () => {
                   if (!user) return dispatch(openModal());
                   book?.subscriptionRequired && premiumUser !== true
                     ? router.push("/choose-plan")
-                    : router.push(`/book?id=${book.id}`);
+                    : router.push(`/book/${book.id}`);
                 }}
               >
                 <audio src={book.audioLink}></audio>

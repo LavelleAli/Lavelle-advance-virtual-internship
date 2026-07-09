@@ -30,13 +30,13 @@ const SelectedBooks = ({ book }) => {
         <audio src={booksInfo?.audioLink}>Audio Link</audio>
         <a
           className={styles.selected__book}
-          href={`/book?id=${booksInfo?.id}`}
+          href={`/book/${booksInfo?.id}`}
           onClick={(e) => {
             e.preventDefault();
             if (!user) return dispatch(openModal());
             booksInfo?.subscriptionRequired && premiumUser !== true
               ? router.push("/choose-plan")
-              : router.push(`/book?id=${booksInfo.id}`);
+              : router.push(`/book/${booksInfo.id}`);
           }}
         >
           <div className={styles.selected__book__subTitle}>

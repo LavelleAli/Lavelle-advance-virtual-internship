@@ -27,7 +27,7 @@ const SuggestedBooks = ({ suggestedBooks }) => {
   function renderHelper(item) {
     return (
       <a
-        href={`/book?id=${item?.id}`}
+        href={`/book/${item?.id}`}
         className={styles.for_you__recommendedBooks_link}
         key={item?.id}
         onClick={(e) => {
@@ -35,7 +35,7 @@ const SuggestedBooks = ({ suggestedBooks }) => {
           if (!user) return dispatch(openModal());
           item?.subscriptionRequired && premiumUser !== true
             ? router.push("/choose-plan")
-            : router.push(`/book?id=${item.id}`);
+            : router.push(`/book/${item.id}`);
         }}
       >
         <div
