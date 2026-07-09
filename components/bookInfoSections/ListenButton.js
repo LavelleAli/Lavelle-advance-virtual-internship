@@ -29,7 +29,7 @@ const ListenButton = ({ id, className, children }) => {
         }
         premiumUser !== true
           ? router.push(`/choose-plan`)
-          : router.push(`/player/${id}`);
+          : router.push(`/player?id=${id}`);
       }}
     >
       {children}

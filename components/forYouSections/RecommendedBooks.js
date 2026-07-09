@@ -27,14 +27,14 @@ const RecommendedBooks = ({ recBooks }) => {
     return (
       <a
         key={book.id}
-        href={`/book/${book?.id}`}
+        href={`/book?id=${book?.id}`}
         className={styles.for_you__recommendedBooks_link}
         onClick={(e) => {
           e.preventDefault();
           if (!user) return dispatch(openModal());
           book?.subscriptionRequired && premiumUser !== true
             ? router.push("/choose-plan")
-            : router.push(`/book/${book.id}`);
+            : router.push(`/book?id=${book.id}`);
         }}
       >
         <div
