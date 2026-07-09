@@ -28,9 +28,9 @@ export default function Home() {
       return <Skeleton height="40px" width="180px" borderRadius="4px" />;
     }
     return user ? (
-      <Logout className="btn home__cta--btn" />
-    ) : (
       <LoginTrigger className="btn home__cta--btn">Login</LoginTrigger>
+    ) : (
+      <Logout className="btn home__cta--btn" />
     );
   }
 
