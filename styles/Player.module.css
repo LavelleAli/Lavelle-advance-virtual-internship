@@ -185,17 +185,6 @@
   background: rgb(43, 217, 124) var(--range-progress);
 }
 
-/* --------------------------------- */
-/* Responsive breakpoints            */
-/* Mobile-first: base styles above   */
-/* are phone (<768px) with a stacked */
-/* audio player bar. Overrides below */
-/* scale up for tablet/laptop, where */
-/* the docked sidebar (200px, see    */
-/* ForYou.module.css) also needs the */
-/* same 50px content clearance used  */
-/* on the other pages.               */
-/* --------------------------------- */
 
 @media (min-width: 768px) {
   .summary {

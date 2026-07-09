@@ -46,15 +46,7 @@
     color: #394547;
 }
 
-/* --------------------------------- */
-/* Responsive breakpoints            */
-/* Mobile-first: base styles above   */
-/* are phone (<768px). Overrides     */
-/* below scale up for tablet/laptop, */
-/* including the docked sidebar's    */
-/* 50px content clearance (see       */
-/* ForYou.module.css .container).    */
-/* --------------------------------- */
+
 
 @media (min-width: 768px) {
     .row {

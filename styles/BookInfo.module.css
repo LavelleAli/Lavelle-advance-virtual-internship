@@ -192,12 +192,7 @@
     height: 100%;
 }
 
-/* --------------------------------- */
-/* Responsive breakpoints            */
-/* Mobile-first: base styles above   */
-/* are phone (<768px). Overrides     */
-/* below scale up for tablet/laptop. */
-/* --------------------------------- */
+
 
 @media (min-width: 768px) {
     .row {

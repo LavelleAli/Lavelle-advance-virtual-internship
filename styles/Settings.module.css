@@ -93,15 +93,7 @@
   width: 100%;
 }
 
-/* --------------------------------------------------------- */
-/* Responsive breakpoints                                    */
-/* Mobile-first: base styles above are phone (<768px).        */
-/* Logged-out content (login_wrapper/login_img/email) keeps  */
-/* the same layout/technique at every size — only the size  */
-/* values scale, restoring the exact original values at the  */
-/* laptop tier (>=1024px). Logged-in content (.btn__action)  */
-/* is free to restructure/scale however fits best.           */
-/* --------------------------------------------------------- */
+
 
 @media (min-width: 768px) {
   .header {

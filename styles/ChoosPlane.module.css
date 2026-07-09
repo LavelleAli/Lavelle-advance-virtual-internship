@@ -361,14 +361,7 @@
     font-weight: 500;
 }
 
-/* --------------------------------- */
-/* Responsive breakpoints            */
-/* Mobile-first: base styles above   */
-/* are phone (<768px). Overrides     */
-/* below scale up for tablet/laptop, */
-/* restoring the original desktop    */
-/* values at the laptop tier.        */
-/* --------------------------------- */
+
 
 @media (min-width: 768px) {
     .row {
