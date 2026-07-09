@@ -27,7 +27,7 @@ export default function Home() {
     if (!hasMounted || initializing) {
       return <Skeleton height="40px" width="180px" borderRadius="4px" />;
     }
-    return !user ? (
+    return user ? (
       <Logout className="btn home__cta--btn" />
     ) : (
       <LoginTrigger className="btn home__cta--btn">Login</LoginTrigger>
