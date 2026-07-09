@@ -12,9 +12,12 @@ const nextConfig = {
     output: "export",
     basePath: `/${repoName}`,
     assetPrefix: `/${repoName}/`,
+    trailingSlash: true,
   }),
   images: {
-    unoptimized: isGithubPagesBuild,
+    ...(isGithubPagesBuild
+      ? { loader: "custom", loaderFile: "./lib/imageLoader.js" }
+      : {}),
     remotePatterns: [
       {
         protocol: "https",
