@@ -59,13 +59,21 @@ const BookBasicInfo = ({ book }) => {
         </div>
 
         <div className={styles.inner_book__readBtnWrapper}>
-          <ReadButton id={item?.id} className={styles.inner_book__readBtn}>
+          <ReadButton
+            id={item?.id}
+            subscriptionRequired={item?.subscriptionRequired}
+            className={styles.inner_book__readBtn}
+          >
             <div className={styles.inner_book__readIcon}>
               <FaBookOpen />
             </div>
             <div className={styles.inner_book__readText}>Read</div>
           </ReadButton>
-          <ListenButton id={item?.id} className={styles.inner_book__readBtn}>
+          <ListenButton
+            id={item?.id}
+            subscriptionRequired={item?.subscriptionRequired}
+            className={styles.inner_book__readBtn}
+          >
             <div className={styles.inner_book__readIcon}>
               <FaMicrophone />
             </div>

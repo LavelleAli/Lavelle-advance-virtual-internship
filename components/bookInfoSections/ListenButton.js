@@ -5,7 +5,7 @@ import { getPremiumStatus } from "@/firebase/firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { openModal } from "@/redux/slices/loginModal";
 
-const ListenButton = ({ id, className, children }) => {
+const ListenButton = ({ id, subscriptionRequired, className, children }) => {
   const router = useRouter();
   const [premiumUser, setPremiumUser] = useState(null);
   const user = useSelector((state) => state.auth.user);
@@ -27,7 +27,7 @@ const ListenButton = ({ id, className, children }) => {
         if (!user) {
           return dispatch(openModal());
         }
-        premiumUser !== true
+        subscriptionRequired && premiumUser !== true
           ? router.push(`/choose-plan`)
           : router.push(`/player/${id}`);
       }}

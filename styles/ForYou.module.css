@@ -483,11 +483,12 @@
   }
 
   .container {
-    margin-left: 50px;
+    margin-left: 0;
   }
 
   .row {
     padding: 0 20px;
+    margin-left: max(200px, calc((100% - 1070px) / 2));
   }
 
   .search_wrapper {
